@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         mAppDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
                 .build()
-                .getGymLogDAO();
+                .getAppDAO();
     }
 
     public static Intent intentFactory(Context context){

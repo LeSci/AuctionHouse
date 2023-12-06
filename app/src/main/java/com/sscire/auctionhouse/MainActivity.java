@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         mJournalDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
                 .build()
-                .getGymLogDAO();
+                .getAppDAO();
     }
 
     private void checkForUser() {

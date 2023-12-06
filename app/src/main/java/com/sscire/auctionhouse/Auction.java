@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 import com.sscire.auctionhouse.db.AppDatabase;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity(tableName = AppDatabase.AUCTION_TABLE)
 public class Auction {
@@ -15,14 +16,16 @@ public class Auction {
     private int mUserId;
     private int mItemId;
     private int mPrice;
-    private LocalDate mExpires;
-    private LocalDate mClose;
+    private Date mExpires;
+    private Date mClose;
 
-    public Auction(int auctionId, int userId, int itemId, int price) {
+    public Auction(int auctionId, int userId, int itemId, int price, Date expires, Date close) {
         mAuctionId = auctionId;
         mUserId = userId;
         mItemId = itemId;
         mPrice = price;
+        mExpires = expires;
+        mClose = close;
     }
 
     public int getAuctionId() {
@@ -57,19 +60,19 @@ public class Auction {
         mPrice = price;
     }
 
-    public LocalDate getExpires() {
+    public Date getExpires() {
         return mExpires;
     }
 
-    public void setExpires(LocalDate expires) {
+    public void setExpires(Date expires) {
         mExpires = expires;
     }
 
-    public LocalDate getClose() {
+    public Date getClose() {
         return mClose;
     }
 
-    public void setClose(LocalDate close) {
+    public void setClose(Date close) {
         mClose = close;
     }
 
@@ -81,8 +84,9 @@ public class Auction {
                 ", mItemId=" + mItemId +
                 ", mPrice=" + mPrice +
                 ", mExpires=" + ((mExpires == null) ? "-" : mExpires) +
-                ", mClose=" + ((mClose == null) ? "-" : mClose) +
+                ", mClose=" + ((mClose == null) ? "-" : mClose)+
                 '}';
     }
+    // ((mExpires == null) ? "-" : mExpires)
 }
 
