@@ -13,4 +13,5 @@
     <string name="login">Login</string>
     <string name="signUp">SignUp</string>
     <string name="mainAdminButton">Admin Tools</string>
+    <string name="mainItemButton">Items</string>
 </resources>

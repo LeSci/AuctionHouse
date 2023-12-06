@@ -103,6 +103,16 @@
         app:layout_constraintTop_toBottomOf="@+id/mainRepsEditText" />
 
     <Button
+        android:id="@+id/mainItemButton"
+        android:layout_width="144dp"
+        android:layout_height="77dp"
+        android:text="@string/mainItemButton"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf= "@+id/mainSubmitButton"/>
+    <Button
         android:id="@+id/mainAdminButton"
         android:layout_width="144dp"
         android:layout_height="77dp"
@@ -113,5 +123,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainSubmitButton" />
+        app:layout_constraintTop_toBottomOf="@+id/mainItemButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

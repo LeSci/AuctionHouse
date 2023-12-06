@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mAdminButton;    // sls
 
-    //private Item mSubItem2;
+   // private MenuItem mSubItem2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,14 +76,15 @@ public class MainActivity extends AppCompatActivity {
         mSubmitButton = findViewById(R.id.mainSubmitButton);
 
         mAdminButton = findViewById(R.id.mainAdminButton);  // sls
+        //mSubItem2 = findViewById(R.id.subitem2);    // sls
 
         // check for Admin access - sls
         if(mUserId != -1 && mUser.getIsAdmin()) {
             mAdminButton.setVisibility(View.VISIBLE);
-            //mSubItem2.setVisible(true);
+           // mSubItem2.setVisible(true);
         } else {
             mAdminButton.setVisibility(View.INVISIBLE);
-            //mSubItem2.setVisible(false);
+           // mSubItem2.setVisible(false);
         }
 
         refreshDisplay();
