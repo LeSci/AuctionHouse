@@ -11,6 +11,11 @@ import com.sscire.auctionhouse.Auction;
 import com.sscire.auctionhouse.Bid;
 import java.util.List;
 
+/**
+ * @author Shannon Scire
+ * Project 02: Part 02 Login and Landing Page
+ * 05 December 2023
+ */
 @Dao
 public interface AppDAO {
 
