@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
 
+//import com.sscire.auctionhouse.R.id;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,10 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mAdminButton;    // sls
 
+    //private Item mSubItem2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         getDatabase();
         checkForUser();
         loginUser(mUserId);
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         mSubmitButton = findViewById(R.id.mainSubmitButton);
 
         mAdminButton = findViewById(R.id.mainAdminButton);  // sls
+
         // check for Admin access - sls
         if(mUserId != -1 && mUser.getIsAdmin()) {
             mAdminButton.setVisibility(View.VISIBLE);
@@ -105,11 +111,14 @@ public class MainActivity extends AppCompatActivity {
         List<User> users = mJournalDAO.getAllUsers();
 
         StringBuilder sb = new StringBuilder();
+
         sb.append("All users:\n");
+
         for(User u : users){
             sb.append(u);
             sb.append("\n");
         }
+
 
         sb.append("all Logs\n");
         List<Journal> logs = mJournalDAO.getAllGymLogs();
@@ -269,29 +278,28 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.userMenuLogout:
-                Toast.makeText(this, "What you want?", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.logout:
-                logoutUser();
-                return true;
-            case R.id.item2:
-                Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.subitem1:
-                Toast.makeText(this, "Sub Item 1 selected", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.subitem2:
-                if(mUser.getIsAdmin()){
-                    Toast.makeText(this, "Admin: Sub Item 2 selected", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "User: Sub Item 2 selected", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.userMenuLogout) {
+            Toast.makeText(this, "What you want?", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (itemId == R.id.logout) {
+            logoutUser();
+            return true;
+        } else if (itemId == R.id.item2) {
+            Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (itemId == R.id.subitem1) {
+            Toast.makeText(this, "Sub Item 1 selected", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (itemId == R.id.subitem2) {
+            if (mUser.getIsAdmin()) {
+                Toast.makeText(this, "Admin: Sub Item 2 selected", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "User: Sub Item 2 selected", Toast.LENGTH_SHORT).show();
+            }
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     public static Intent intentFactory(Context context, int userId) {

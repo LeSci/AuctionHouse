@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
                 } else{
                     User newUser = new User(mUsername, mPassword, false);
-                    mGymLogDAO.insert(newUser);
+                    mAppDAO.insert(newUser);
                     Toast.makeText(LoginActivity.this,
                             "Account: " + mUsername + " created. Please Login."
                             , Toast.LENGTH_SHORT).show();
