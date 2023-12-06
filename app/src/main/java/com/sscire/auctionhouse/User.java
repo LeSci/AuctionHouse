@@ -2,6 +2,11 @@ package com.sscire.auctionhouse;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.sscire.auctionhouse.db.AppDatabase;
+/**
+ * @author Shannon Scire
+ * Project 02: Part 02 Login and Landing Page
+ * 05 December 2023
+ */
 @Entity(tableName = AppDatabase.USER_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)
