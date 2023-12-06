@@ -86,5 +86,3 @@ public class Auction {
     }
 }
 
-// (mExpires == null) ? "-" :
-// (mClose == null) ? "-" :
