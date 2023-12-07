@@ -22,12 +22,15 @@ public class MyReceiver extends BroadcastReceiver {
      * In the video, this is done in MainActivity() or any Activity attached to a view (I think).
      * Need to also update the AndroidManifest.xml
      */
+//    // Need to also update the AndroidManifest.xml
 //    <receiver android:name=".MyReceiver"
 //        android:exported="true">
 //            <intent-filter>
 //                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"></action>
 //            </intent-filter>
 //    </receiver>
+
+      // Need to add to MainActivity()
 //    MyReceiver r;
 //    IntentFilter mIntentFilter;
 //    @Override
@@ -38,6 +41,22 @@ public class MyReceiver extends BroadcastReceiver {
 //        r = new MyReceiver();
 //        mIntentFilter = new IntentFilter("android.intent.action.ACTION_POWER_DISCONNECTED");
 //    }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        registerReceiver(r, mIntentFilter);
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        unregisteredReceiver(r);
+//    }
+
+
+
+    // need to create class file, MyReceiver.java
 //    public class MyReceiver extends BroadcastReceiver{
 //        @Override
 //        public void onReceive(Context context, Intent intent) {
