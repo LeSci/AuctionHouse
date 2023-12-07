@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mAdminButton;    // sls
 
    // private MenuItem mSubItem2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

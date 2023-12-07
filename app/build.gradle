@@ -58,4 +58,8 @@ dependencies {
         testImplementation("androidx.room:room-testing:$room_version")
         // optional - Paging 3 Integration
         implementation("androidx.room:room-paging:$room_version")
+        // Notifications
+        // https://developer.android.com/develop/ui/views/notifications/build-notification#java
+        // implementation("androidx.core:core-ktx:2.2.0")
+
 }
