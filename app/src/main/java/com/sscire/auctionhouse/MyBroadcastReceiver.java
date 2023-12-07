@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-public class MyReceiver extends BroadcastReceiver {
+public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
@@ -42,12 +42,14 @@ public class MyReceiver extends BroadcastReceiver {
 //        mIntentFilter = new IntentFilter("android.intent.action.ACTION_POWER_DISCONNECTED");
 //    }
 
+    // Lifecycle methods, registering receiver - keep listening to it
 //    @Override
 //    protected void onResume() {
 //        super.onResume();
 //        registerReceiver(r, mIntentFilter);
 //    }
 //
+    // Lifecycle methods, when Activity is out of memory, stop listening for event, help prevent memory leaks, etc.
 //    @Override
 //    protected void onDestroy() {
 //        super.onDestroy();

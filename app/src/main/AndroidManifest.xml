@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".MyReceiver"
+        <receiver android:name=".MyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"></action>
