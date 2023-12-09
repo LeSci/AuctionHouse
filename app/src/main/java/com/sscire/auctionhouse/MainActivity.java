@@ -139,9 +139,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        // set menu item to currently logged-in username
         if (mUser != null) {
             MenuItem item = menu.findItem(R.id.userMenuLogout);
             item.setTitle(mUser.getUserName());
+        }
+        // sls - set subitem2 visible us currently logged-in user is admin
+        // https://stackoverflow.com/questions/9030268/set-visibility-in-menu-programmatically-android
+        MenuItem register = menu.findItem(R.id.subitem2);
+        if(mUserId != -1 && mUser.getIsAdmin())
+        {
+            register.setVisible(true);
+        }
+        else
+        {
+            register.setVisible(false);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -270,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
         }
         mMainDisplay.setText(sb.toString());
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
