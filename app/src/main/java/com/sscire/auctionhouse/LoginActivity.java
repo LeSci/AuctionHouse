@@ -66,19 +66,20 @@ public class LoginActivity extends AppCompatActivity {
         mButtonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getValuesFromDisplay();
-                if(checkForUserInDatabase()){
-                    Toast.makeText(LoginActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
-                } else{
-                    User newUser = new User(mUsername, mPassword, false);
-                    mAppDAO.insert(newUser);
-                    Toast.makeText(LoginActivity.this,
-                            "Account: " + mUsername + " created. Please Login."
-                            , Toast.LENGTH_SHORT).show();
-                    mUsernameField.getText().toString();
-                    mPasswordField.setText("");
-                };
-
+//                getValuesFromDisplay();
+//                if(checkForUserInDatabase()){
+//                    Toast.makeText(LoginActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
+//                } else{
+//                    User newUser = new User(mUsername, mPassword, false);
+//                    mAppDAO.insert(newUser);
+//                    Toast.makeText(LoginActivity.this,
+//                            "Account: " + mUsername + " created. Please Login."
+//                            , Toast.LENGTH_SHORT).show();
+//                    mUsernameField.getText().toString();
+//                    mPasswordField.setText("");
+//                };
+                Intent intent = SignUpActivity.intentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 

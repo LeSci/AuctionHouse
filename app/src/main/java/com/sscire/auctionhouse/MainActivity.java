@@ -105,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mAdminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = AdminActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void debug() {
@@ -155,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
         {
             register.setVisible(false);
         }
+        // sls
+        invalidateOptionsMenu();
         return super.onPrepareOptionsMenu(menu);
     }
 

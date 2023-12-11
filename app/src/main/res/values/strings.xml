@@ -16,4 +16,7 @@
     <string name="mainItemButton">Items</string>
     <string name="mainAuctionButton">Auction</string>
     <string name="mainBidButton">Bid</string>
+    <string name="return_login">Return Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="return_home">return home</string>
 </resources>
