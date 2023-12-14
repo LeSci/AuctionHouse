@@ -70,16 +70,22 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     int userID = Integer.parseInt(mUserIdField.getText().toString());
-                    User user = mAppDAO.getUserByUserId(userID);
-                    if(user == null){
-                        throw new NumberFormatException();
+                    if (userID == 1 || userID == 2){
+                        Toast.makeText(AdminActivity.this, "Unable to change default accounts."
+                                , Toast.LENGTH_SHORT).show();
+                        mUserIdField.setText("");
+                    } else {
+                        User user = mAppDAO.getUserByUserId(userID);
+                        if (user == null) {
+                            throw new NumberFormatException();
+                        }
+                        user.setIsAdmin(!user.getIsAdmin());
+                        mAppDAO.update(user);
+                        Toast.makeText(AdminActivity.this,
+                                user.getUserName() + " updated", Toast.LENGTH_SHORT).show();
+                        mUserIdField.setText("");
+                        refreshDisplay();
                     }
-                    user.setIsAdmin(!user.getIsAdmin());
-                    mAppDAO.update(user);
-                    Toast.makeText(AdminActivity.this,
-                            user.getUserName() + " updated", Toast.LENGTH_SHORT).show();
-                    mUserIdField.setText("");
-                    refreshDisplay();
                 } catch (NumberFormatException e) {
                     Toast.makeText(AdminActivity.this,
                             "Enter valid UserId", Toast.LENGTH_SHORT).show();
