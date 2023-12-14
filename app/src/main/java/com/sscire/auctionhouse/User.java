@@ -54,12 +54,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "mUserId=" + mUserId +
-                ", mUserName='" + mUserName + '\'' +
-                ", mPassword='" + mPassword + '\'' +
-                ", mIsAdmin='" + mIsAdmin + '\'' +
-                '}';
+        return    "UserID: " + mUserId
+                + "\tUserName: " + mUserName
+                + "\tPassword: " + mPassword
+                + "\tIsAdmin:  " + mIsAdmin;
     }
 
 }
