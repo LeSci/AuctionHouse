@@ -69,13 +69,19 @@ public class ProfileActivity extends AppCompatActivity {
         mButtonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String UpdatedUserName = mUsernameField.getText().toString();
-                String UpdatedPassword = mPasswordField.getText().toString();
-                mUser.setUserName(UpdatedUserName);
-                mUser.setPassword(UpdatedPassword);
-                mAppDAO.update(mUser);
-                Toast.makeText(ProfileActivity.this, "Account Updated"
-                        , Toast.LENGTH_SHORT).show();
+                int UserID = mUser.getUserId();
+                if(UserID == 1 || UserID == 2){
+                    Toast.makeText(ProfileActivity.this, "Unable to update default accounts."
+                            , Toast.LENGTH_SHORT).show();
+                } else {
+                    String UpdatedUserName = mUsernameField.getText().toString();
+                    String UpdatedPassword = mPasswordField.getText().toString();
+                    mUser.setUserName(UpdatedUserName);
+                    mUser.setPassword(UpdatedPassword);
+                    mAppDAO.update(mUser);
+                    Toast.makeText(ProfileActivity.this, "Account Updated"
+                            , Toast.LENGTH_SHORT).show();
+                }
             }
         });
         mButtonHome.setOnClickListener(new View.OnClickListener() {
