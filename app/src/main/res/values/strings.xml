@@ -21,4 +21,6 @@
     <string name="return_home">return home</string>
     <string name="update_account">update account</string>
     <string name="userId">UserId</string>
+    <string name="adminSubmitButton">Update IsAdmin</string>
+    <string name="adminuserlist">adminUserList</string>
 </resources>

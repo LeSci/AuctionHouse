@@ -6,74 +6,73 @@
     android:layout_height="match_parent"
     tools:context=".AdminActivity">
 
-    <EditText
-        android:id="@+id/edittext_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/textview_amount"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edittext_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="0"
-        android:textSize="50sp"
-        android:textAlignment="center"/>
-
-    <Button
-        android:id="@+id/button_decrease"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/textview_amount"
-        android:layout_alignTop="@id/textview_amount"
-        android:layout_toStartOf="@id/textview_amount"
-        android:text="-" />
-
-    <Button
-        android:id="@+id/button_increase"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textview_amount"
-        android:layout_alignBottom="@id/textview_amount"
-        android:layout_toEndOf="@id/textview_amount"
-        android:text="+" />
-
-    <Button
-        android:id="@+id/button_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/button_increase"
-        android:layout_alignBottom="@id/button_increase"
-        android:layout_toEndOf="@id/button_increase"
-        android:text="add"
-        android:layout_marginStart="8dp"/>
-
     <TextView
         android:id="@+id/textview_username"
         android:text="ID   |   Username    |    Password    |    IsAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textview_amount"
+        android:layout_marginTop="24dp"
+        android:layout_margin="16dp"
         android:textSize="16sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="310dp"
-        android:layout_below="@id/textview_username"
-        android:layout_marginTop="8dp" />
+    <TextView
+        android:id="@+id/adminUserDisplay"
+        android:layout_width="374dp"
+        android:layout_height="221dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical"
+        android:text="@string/adminuserlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@+id/textview_username"/>
+
+    <EditText
+        android:id="@+id/editTextUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/userId"
+        android:textAlignment="center"
+        android:inputType="number"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginEnd="144dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@+id/adminUserDisplay" />
+
+    <Button
+        android:id="@+id/adminSubmitButton"
+        android:layout_width="128dp"
+        android:layout_height="96dp"
+        android:text="@string/adminSubmitButton"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="144dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:layout_below="@+id/editTextUserId" />
 
     <Button
         android:id="@+id/buttonHome"
         android:layout_width="128dp"
         android:layout_height="96dp"
-        android:layout_below="@+id/recyclerview"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="139dp"
@@ -81,6 +80,7 @@
         android:layout_marginEnd="144dp"
         android:gravity="center"
         android:text="@string/return_home"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_below="@+id/adminSubmitButton"/>
 
 </RelativeLayout>
