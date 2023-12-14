@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.userMenuLogout) {
-            Toast.makeText(this, "What you want?", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Go to User Profile", Toast.LENGTH_SHORT).show();
             Intent intent = ProfileActivity.intentFactory(getApplicationContext(),mUser.getUserId());
             startActivity(intent);
             return true;

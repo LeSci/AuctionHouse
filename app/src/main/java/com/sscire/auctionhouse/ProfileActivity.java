@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
@@ -61,11 +62,22 @@ public class ProfileActivity extends AppCompatActivity {
         mUsernameField = findViewById(R.id.editTextLoginUserName3);
         mPasswordField = findViewById(R.id.editTextLoginPassword3);
 
-//        mUserIdField.setText(mUser.getUserId());
-//        mUsernameField.setText(mUser.getUserName());
-//        mPasswordField .setText(mUser.getPassword());
+        mUserIdField.setText(Integer.toString(mUser.getUserId()));
+        mUsernameField.setText(mUser.getUserName());
+        mPasswordField .setText(mUser.getPassword());
 
-
+        mButtonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String UpdatedUserName = mUsernameField.getText().toString();
+                String UpdatedPassword = mPasswordField.getText().toString();
+                mUser.setUserName(UpdatedUserName);
+                mUser.setPassword(UpdatedPassword);
+                mAppDAO.update(mUser);
+                Toast.makeText(ProfileActivity.this, "Account Updated"
+                        , Toast.LENGTH_SHORT).show();
+            }
+        });
         mButtonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
