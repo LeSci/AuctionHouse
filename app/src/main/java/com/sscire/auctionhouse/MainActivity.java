@@ -3,6 +3,7 @@ package com.sscire.auctionhouse;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         mDebug = findViewById(R.id.DEBUG);
         mDebug.setMovementMethod(new ScrollingMovementMethod());
         List<User> users = mJournalDAO.getAllUsers();
+        //LiveData<List<User>> users = mJournalDAO.getAllUsers();
 
         StringBuilder sb = new StringBuilder();
 
@@ -306,6 +308,8 @@ public class MainActivity extends AppCompatActivity {
         int itemId = item.getItemId();
         if (itemId == R.id.userMenuLogout) {
             Toast.makeText(this, "What you want?", Toast.LENGTH_SHORT).show();
+            Intent intent = ProfileActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+            startActivity(intent);
             return true;
         } else if (itemId == R.id.logout) {
             logoutUser();

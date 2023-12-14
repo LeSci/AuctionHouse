@@ -1,5 +1,6 @@
 package com.sscire.auctionhouse.db;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -50,6 +51,7 @@ public interface AppDAO {
 
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE)
     List<User> getAllUsers();
+    //LiveData<List<User>> getAllUsers();
 
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE mUserName = :username")
     User getUserByUsername(String username);

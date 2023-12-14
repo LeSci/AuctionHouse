@@ -39,6 +39,7 @@ dependencies {
 
     // implement room
         var room_version = "2.6.1"
+        def lifecycle_version = "2.6.2"
 
         implementation("androidx.room:room-runtime:$room_version")
         annotationProcessor("androidx.room:room-compiler:$room_version")
@@ -61,5 +62,18 @@ dependencies {
         // Notifications
         // https://developer.android.com/develop/ui/views/notifications/build-notification#java
         // implementation("androidx.core:core-ktx:2.2.0")
+
+    // Lifecycle Components
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    // implementation "com.android.arch.lifecycle:extensions:$lifecycle_version2"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    // ...
+    // Annotation processor
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+
 
 }

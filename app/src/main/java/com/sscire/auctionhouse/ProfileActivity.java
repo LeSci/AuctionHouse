@@ -9,32 +9,41 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
 
-public class AdminActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
     private static final String USER_ID_KEY = "com.sscire.auctionhouse.userIdKey";
     private static final String PREFENCES_KEY = "com.sscire.auctionhouse.PREFENCES_KEY";
-    private User mUser;
+
+    private EditText mUsernameField;
+    private EditText mPasswordField;
+
+    private EditText mUserIdField;
+
     private int mUserId = -1;
     private AppDAO mAppDAO;
     private SharedPreferences mPreferences = null;
 
     private Button mButtonHome;
 
+    private Button mButtonUpdate;
+
+    private User mUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_profile);
 
         mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
 
-        wireupDisplay();
         getDatabase();
+        mUser = mAppDAO.getUserByUserId(mUserId);
+        wireupDisplay();
 
     }
 
@@ -46,19 +55,28 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void wireupDisplay() {
-        mButtonHome = findViewById(R.id.buttonHome);
+        mButtonHome = findViewById(R.id.buttonHome3);
+        mButtonUpdate = findViewById(R.id.buttonUpdateAccount);
+        mUserIdField = findViewById(R.id.editTextUserId);
+        mUsernameField = findViewById(R.id.editTextLoginUserName3);
+        mPasswordField = findViewById(R.id.editTextLoginPassword3);
+
+//        mUserIdField.setText(mUser.getUserId());
+//        mUsernameField.setText(mUser.getUserName());
+//        mPasswordField .setText(mUser.getPassword());
+
+
         mButtonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = MainActivity.intentFactory(getApplicationContext(),mUserId);
+                Intent intent = MainActivity.intentFactory(getApplicationContext(), mUserId);
                 startActivity(intent);
             }
         });
-
-
     } // close wireupDisplay
+
     public static Intent intentFactory(Context context, int userId) {
-        Intent intent = new Intent(context, AdminActivity.class);
+        Intent intent = new Intent(context, ProfileActivity.class);
         intent.putExtra(USER_ID_KEY, userId);
         return intent;
     }

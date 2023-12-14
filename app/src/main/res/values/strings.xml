@@ -19,4 +19,6 @@
     <string name="return_login">Return Login</string>
     <string name="create_account">Create Account</string>
     <string name="return_home">return home</string>
+    <string name="update_account">update account</string>
+    <string name="userId">UserId</string>
 </resources>
