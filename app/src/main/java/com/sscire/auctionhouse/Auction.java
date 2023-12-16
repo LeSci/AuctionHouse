@@ -16,16 +16,12 @@ public class Auction {
     private int mUserId;
     private int mItemId;
     private int mPrice;
-    private Date mExpires;
-    private Date mClose;
 
-    public Auction(int auctionId, int userId, int itemId, int price, Date expires, Date close) {
-        mAuctionId = auctionId;
+
+    public Auction(int userId, int itemId, int price) {
         mUserId = userId;
         mItemId = itemId;
         mPrice = price;
-        mExpires = expires;
-        mClose = close;
     }
 
     public int getAuctionId() {
@@ -60,22 +56,6 @@ public class Auction {
         mPrice = price;
     }
 
-    public Date getExpires() {
-        return mExpires;
-    }
-
-    public void setExpires(Date expires) {
-        mExpires = expires;
-    }
-
-    public Date getClose() {
-        return mClose;
-    }
-
-    public void setClose(Date close) {
-        mClose = close;
-    }
-
     @Override
     public String toString() {
         return "Auction{" +
@@ -83,8 +63,6 @@ public class Auction {
                 ", mUserId=" + mUserId +
                 ", mItemId=" + mItemId +
                 ", mPrice=" + mPrice +
-                ", mExpires=" + ((mExpires == null) ? "-" : mExpires) +
-                ", mClose=" + ((mClose == null) ? "-" : mClose)+
                 '}';
     }
     // ((mExpires == null) ? "-" : mExpires)

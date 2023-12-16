@@ -79,6 +79,12 @@ public interface AppDAO {
     @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE + " WHERE mAuctionId = :auctionId")
     Auction getAuctionByAuctionId(int auctionId);
 
+    @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE + " WHERE mAuctionId = :itemId")
+    Auction getAuctionByItemId(int itemId);
+
+    @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE+ " WHERE mUserId = :userId")
+    List<Auction> getAuctionsByUserID(int userId);
+
     // Bid
     @Insert
     void insert(Bid...bids);
