@@ -74,15 +74,26 @@ public class ItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int userId = mUserId;
-                String itemName =  mItemName.getText().toString();
-                int itemPrice = Integer.parseInt(mItemPrice.getText().toString());
 
-                Item newItem = new Item(userId, itemName, itemPrice);
-                mAppDAO.insert(newItem);
-                Toast.makeText(ItemActivity.this,
-                        "Item: " + itemName + " created."
-                        , Toast.LENGTH_SHORT).show();
-                refreshDisplay();
+                try{
+                    String itemName =  mItemName.getText().toString();
+                    int itemPrice = Integer.parseInt(mItemPrice.getText().toString());
+                    if(itemName.length() == 0) {
+                        throw new NumberFormatException();
+                    }
+                    Item newItem = new Item(userId, itemName, itemPrice);
+                    mAppDAO.insert(newItem);
+                    Toast.makeText(ItemActivity.this,
+                            "Item: " + itemName + " created."
+                            , Toast.LENGTH_SHORT).show();
+                    refreshDisplay();
+                    mItemName.setText("");
+                    mItemPrice.setText("");
+                } catch (NumberFormatException e){
+                    Toast.makeText(ItemActivity.this,
+                            "Enter valid item name and item price."
+                            , Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -92,15 +103,16 @@ public class ItemActivity extends AppCompatActivity {
                 try {
                     int itemId = Integer.parseInt(mItemId.getText().toString());
                     mItem = mAppDAO.getItemByItemId(itemId);
-                    String itemName = mItem.getItemName();
                     if (mItem == null){
                         throw new NumberFormatException ();
                     }
+                    String itemName = mItem.getItemName();
                     mAppDAO.delete(mItem);
                     Toast.makeText(ItemActivity.this,
                             "Item: " + itemId + " " + itemName + " deleted."
                             , Toast.LENGTH_SHORT).show();
                     refreshDisplay();
+                    mItemId.setText("");
                 } catch (NumberFormatException e){
                     Toast.makeText(ItemActivity.this,
                             "Enter a valid itemId"
