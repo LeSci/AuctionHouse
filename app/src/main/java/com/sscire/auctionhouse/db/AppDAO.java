@@ -119,4 +119,5 @@ public interface AppDAO {
 
     @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mItemId = :itemId")
     Item getItemByItemId(int itemId);
+
 }

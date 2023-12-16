@@ -107,6 +107,10 @@ public class ItemActivity extends AppCompatActivity {
                         throw new NumberFormatException ();
                     }
                     String itemName = mItem.getItemName();
+                    int itemUserId = mItem.getUserId();
+                    if(itemUserId != mUserId){
+                        throw new NumberFormatException ();
+                    }
                     mAppDAO.delete(mItem);
                     Toast.makeText(ItemActivity.this,
                             "Item: " + itemId + " " + itemName + " deleted."
@@ -115,7 +119,7 @@ public class ItemActivity extends AppCompatActivity {
                     mItemId.setText("");
                 } catch (NumberFormatException e){
                     Toast.makeText(ItemActivity.this,
-                            "Enter a valid itemId"
+                            "Enter a valid itemId owned by user"
                             , Toast.LENGTH_SHORT).show();
                 }
             }
