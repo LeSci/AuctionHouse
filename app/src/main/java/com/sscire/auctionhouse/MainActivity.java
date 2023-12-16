@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mItemButton;
 
+    private Button mAuctionButton;
+
    // private MenuItem mSubItem2;
 
 
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         mAdminButton = findViewById(R.id.mainAdminButton);  // sls
         //mSubItem2 = findViewById(R.id.subitem2);    // sls
         mItemButton = findViewById(R.id.mainItemButton);
+        mAuctionButton = findViewById(R.id.mainAuctionButton);
 
         // check for Admin access - sls
         if(mUserId != -1 && mUser.getIsAdmin()) {
@@ -116,6 +119,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mAuctionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = AuctionActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+                startActivity(intent);
+            }
+        });
+
 
         mAdminButton.setOnClickListener(new View.OnClickListener() {
             @Override
