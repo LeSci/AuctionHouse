@@ -84,11 +84,25 @@ public class ProfileActivity extends AppCompatActivity {
                 } else {
                     String UpdatedUserName = mUsernameField.getText().toString();
                     String UpdatedPassword = mPasswordField.getText().toString();
-                    mUser.setUserName(UpdatedUserName);
-                    mUser.setPassword(UpdatedPassword);
-                    mAppDAO.update(mUser);
-                    Toast.makeText(ProfileActivity.this, "Account Updated"
-                            , Toast.LENGTH_SHORT).show();
+                    if(UpdatedUserName.length() <= 5 || UpdatedPassword.length() <= 5){
+                        Toast.makeText(ProfileActivity.this, "Username/Password minimum 5 characters."
+                                , Toast.LENGTH_SHORT).show();
+                        mUsernameField.setText(mUser.getUserName());
+                        mPasswordField.setText(mUser.getPassword());
+                    } else {
+                        User testUser = mAppDAO.getUserByUsername(UpdatedUserName);
+                        if (testUser != null) {
+                            Toast.makeText(ProfileActivity.this, "Username taken."
+                                    , Toast.LENGTH_SHORT).show();
+                            mUsernameField.setText(mUser.getUserName());
+                        } else {
+                            mUser.setUserName(UpdatedUserName);
+                            mUser.setPassword(UpdatedPassword);
+                            mAppDAO.update(mUser);
+                            Toast.makeText(ProfileActivity.this, "Account Updated"
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             }
         });
