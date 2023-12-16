@@ -8,85 +8,101 @@
     tools:context=".ItemActivity">
 
     <TextView
-        android:id="@+id/DEBUG"
-        android:layout_width="277dp"
-        android:layout_height="238dp"
-        android:layout_marginTop="20dp"
-        android:text="debug"
-        android:visibility="gone"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.649"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainSubmitButton" />
-
-    <TextView
-        android:id="@+id/mainGymLogDisplay"
-        android:layout_width="374dp"
-        android:layout_height="221dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/textview_itemheading"
+        android:text="itemID    |    userID    |    Item Name   |    Price    "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:fadeScrollbars="true"
-        android:scrollbars="vertical"
-        android:text="@string/app_name"
+        android:layout_margin="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/mainExerciseEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/itemDisplay"
+        android:layout_width="374dp"
+        android:layout_height="221dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/mainExerciseHint"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainGymLogDisplay" />
-
-    <EditText
-        android:id="@+id/mainWeightEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/mainWeightHint"
-        android:inputType="numberSigned"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainExerciseEditText" />
-
-    <EditText
-        android:id="@+id/mainRepsEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="16dp"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical"
+        android:text="itemList"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textview_itemheading" />
+
+    <EditText
+        android:id="@+id/itemNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="144dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/mainRepsHint"
-        android:inputType="numberSigned"
+        android:hint="itemName"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainWeightEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/itemDisplay" />
+
+    <EditText
+        android:id="@+id/itemPriceEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="144dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="itemPrice"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameEditText" />
 
     <Button
-        android:id="@+id/mainSubmitButton"
-        android:layout_width="150dp"
-        android:layout_height="169dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/mainSubmitButton"
-        android:textSize="24sp"
+        android:id="@+id/itemSubmitButton"
+        android:layout_width="128dp"
+        android:layout_height="96dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginEnd="144dp"
+        android:gravity="center"
+        android:text="Add Item"
+        android:textSize="20sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainGymLogDisplay" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemPriceEditText"/>
 
+    <Button
+        android:id="@+id/buttonHome"
+        android:layout_width="128dp"
+        android:layout_height="96dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginEnd="144dp"
+        android:gravity="center"
+        android:text="@string/return_home"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemSubmitButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
