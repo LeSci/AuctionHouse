@@ -170,28 +170,7 @@ public class MainActivity extends AppCompatActivity {
         invalidateOptionsMenu();
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // set menu item to currently logged-in username
-        if (mUser != null) {
-            MenuItem item = menu.findItem(R.id.userMenuLogout);
-            item.setTitle(mUser.getUserName());
-        }
-        // sls - set subitem2 visible us currently logged-in user is admin
-        // https://stackoverflow.com/questions/9030268/set-visibility-in-menu-programmatically-android
-        MenuItem register = menu.findItem(R.id.subitem2);
-        if(mUserId != -1 && mUser.getIsAdmin())
-        {
-            register.setVisible(true);
-        }
-        else
-        {
-            register.setVisible(false);
-        }
-        // sls
-        invalidateOptionsMenu();
-        return super.onPrepareOptionsMenu(menu);
-    }
+
 
     private void addUserToPreference(int userId) {
         if (mPreferences == null) {
@@ -325,7 +304,28 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.user_menu, menu);
         return true;
     }
-
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // set menu item to currently logged-in username
+        if (mUser != null) {
+            MenuItem item = menu.findItem(R.id.userMenuLogout);
+            item.setTitle(mUser.getUserName());
+        }
+        // sls - set subitem2 visible us currently logged-in user is admin
+        // https://stackoverflow.com/questions/9030268/set-visibility-in-menu-programmatically-android
+        MenuItem register = menu.findItem(R.id.subitem4);
+        if(mUserId != -1 && mUser.getIsAdmin())
+        {
+            register.setVisible(true);
+        }
+        else
+        {
+            register.setVisible(false);
+        }
+        // sls
+        invalidateOptionsMenu();
+        return super.onPrepareOptionsMenu(menu);
+    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -338,16 +338,28 @@ public class MainActivity extends AppCompatActivity {
             logoutUser();
             return true;
         } else if (itemId == R.id.item2) {
-            Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Menu", Toast.LENGTH_SHORT).show();
             return true;
         } else if (itemId == R.id.subitem1) {
-            Toast.makeText(this, "Sub Item 1 selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+            Intent intent = MainActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+            startActivity(intent);
             return true;
         } else if (itemId == R.id.subitem2) {
+            Toast.makeText(this, "Items", Toast.LENGTH_SHORT).show();
+            Intent intent = ItemActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+            startActivity(intent);
+            return true;
+        } else if (itemId == R.id.subitem3) {
+            Toast.makeText(this, "Auction", Toast.LENGTH_SHORT).show();
+            Intent intent = AuctionActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+            startActivity(intent);
+            return true;
+        } else if (itemId == R.id.subitem4) {
             if (mUser.getIsAdmin()) {
-                Toast.makeText(this, "Admin: Sub Item 2 selected", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "User: Sub Item 2 selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Admin", Toast.LENGTH_SHORT).show();
+                Intent intent = AdminActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+                startActivity(intent);
             }
             return true;
         }
