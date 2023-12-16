@@ -158,6 +158,36 @@ public class AuctionActivity extends AppCompatActivity {
             }
         });
 
+        mAuctionBuyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    int auctionId = Integer.parseInt(mAuctionId.getText().toString());
+                    mAuction = mAppDAO.getAuctionByAuctionId(auctionId);
+                    if(mAuction == null || mAuction.getUserId() == mUserId){
+                        throw new NumberFormatException();
+                    }
+                    int itemId = mAuction.getItemId();
+                    mItem = mAppDAO.getItemByItemId(itemId);
+                    String itemName = mItem.getItemName();
+                    mItem.setUserId(mUserId);
+                    mAppDAO.update(mItem);
+                    mAppDAO.delete(mAuction);
+                    Toast.makeText(AuctionActivity.this,
+                            "Auction: " + auctionId + " " + itemName + " purchased."
+                            , Toast.LENGTH_SHORT).show();
+                    refreshDisplay();
+                    refreshItemDisplay();
+                    mAuctionId.setText("");
+                } catch (NumberFormatException e){
+                    Toast.makeText(AuctionActivity.this,
+                            "Enter a valid auctionId not created by user"
+                            , Toast.LENGTH_SHORT).show();
+                    mAuctionId.setText("");
+                }
+            }
+        });
+
         mButtonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
