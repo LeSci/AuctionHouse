@@ -7,52 +7,68 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/editTextLoginUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
+    <TextView
+        android:id="@+id/mainTextView"
+        android:layout_width="364dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="16dp"
+        android:text="Welcome to the\nAuction House \n\nPlease Login or Signup."
         android:textAlignment="center"
+        android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextLoginPassword"
+        android:id="@+id/editTextLoginUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
         android:textAlignment="center"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLoginUserName" />
+        app:layout_constraintTop_toBottomOf="@+id/mainTextView" />
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="210dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="24dp"
-        android:textSize="30sp"
+        android:layout_width="192dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="28dp"
         android:text="@string/login"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLoginPassword" />
 
     <Button
         android:id="@+id/buttonSignUp"
-        android:layout_width="210dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="192dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="28dp"
         android:text="@string/signUp"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+
+    <EditText
+        android:id="@+id/editTextLoginPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoginUserName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
