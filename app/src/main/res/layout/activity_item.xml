@@ -36,13 +36,32 @@
         app:layout_constraintTop_toTopOf="@+id/textview_itemheading" />
 
     <EditText
+        android:id="@+id/itemIDEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="144dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="itemID"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemDisplay" />
+
+    <EditText
         android:id="@+id/itemNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="139dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="144dp"
         android:ems="10"
         android:gravity="center"
@@ -51,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDisplay" />
+        app:layout_constraintTop_toBottomOf="@+id/itemIDEditText" />
 
     <EditText
         android:id="@+id/itemPriceEditText"
@@ -75,7 +94,7 @@
     <Button
         android:id="@+id/itemSubmitButton"
         android:layout_width="128dp"
-        android:layout_height="96dp"
+        android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="139dp"
@@ -90,9 +109,27 @@
         app:layout_constraintTop_toBottomOf="@+id/itemPriceEditText"/>
 
     <Button
+        android:id="@+id/itemDeleteButton"
+        android:layout_width="128dp"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginEnd="144dp"
+        android:gravity="center"
+        android:text="Delete Item"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemSubmitButton"/>
+
+    <Button
         android:id="@+id/buttonHome"
         android:layout_width="128dp"
-        android:layout_height="96dp"
+        android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="139dp"
@@ -103,6 +140,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemSubmitButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/itemDeleteButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

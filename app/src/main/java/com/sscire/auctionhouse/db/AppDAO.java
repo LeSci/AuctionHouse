@@ -114,6 +114,9 @@ public interface AppDAO {
     @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mUserId = :userId")
     Item getItemByUserId(int userId);
 
+    @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mUserId = :userId")
+    List<Item> getItemsByUserId(int userId);
+
     @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mItemId = :itemId")
     Item getItemByItemId(int itemId);
 }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
@@ -26,12 +27,16 @@ public class ItemActivity extends AppCompatActivity {
     private int mUserId = -1;
     private AppDAO mAppDAO;
 
+    private Item mItem;
     private TextView mItemDisplay;
 
+    private EditText mItemId;
     private EditText mItemName;
     private EditText mItemPrice;
 
     private Button mItemSubmitButton;
+
+    private Button mItemDeleteButton;
 
     private Button mButtonHome;
 
@@ -47,6 +52,7 @@ public class ItemActivity extends AppCompatActivity {
         mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
         getDatabase();
         wireupDisplay();
+        refreshDisplay();
 
 
 
@@ -56,11 +62,13 @@ public class ItemActivity extends AppCompatActivity {
         mItemDisplay = findViewById(R.id.itemDisplay);
         mItemDisplay.setMovementMethod(new ScrollingMovementMethod());
 
+        mItemId = findViewById(R.id.itemIDEditText);
         mItemName = findViewById(R.id.itemNameEditText);
         mItemPrice = findViewById(R.id.itemPriceEditText);
 
         mButtonHome = findViewById(R.id.buttonHome);
         mItemSubmitButton = findViewById(R.id.itemSubmitButton);
+        mItemDeleteButton = findViewById(R.id.itemDeleteButton);
 
         mItemSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,9 +79,36 @@ public class ItemActivity extends AppCompatActivity {
 
                 Item newItem = new Item(userId, itemName, itemPrice);
                 mAppDAO.insert(newItem);
-
+                Toast.makeText(ItemActivity.this,
+                        "Item: " + itemName + " created."
+                        , Toast.LENGTH_SHORT).show();
+                refreshDisplay();
             }
         });
+
+        mItemDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    int itemId = Integer.parseInt(mItemId.getText().toString());
+                    mItem = mAppDAO.getItemByItemId(itemId);
+                    String itemName = mItem.getItemName();
+                    if (mItem == null){
+                        throw new NumberFormatException ();
+                    }
+                    mAppDAO.delete(mItem);
+                    Toast.makeText(ItemActivity.this,
+                            "Item: " + itemId + " " + itemName + " deleted."
+                            , Toast.LENGTH_SHORT).show();
+                    refreshDisplay();
+                } catch (NumberFormatException e){
+                    Toast.makeText(ItemActivity.this,
+                            "Enter a valid itemId"
+                            , Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         mButtonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +119,7 @@ public class ItemActivity extends AppCompatActivity {
     } // end WireUp
 
     private void refreshDisplay() {
-        mItemList = mAppDAO.getAllItems();
+        mItemList = mAppDAO.getItemsByUserId(mUserId);
 
         if (mItemList.size() <= 0) {
             mItemDisplay.setText(R.string.no_items_in_database);
