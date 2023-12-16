@@ -189,6 +189,11 @@ public class MainActivity extends AppCompatActivity {
                 .getAppDAO();
     }
 
+    private void getPrefs() {
+        mPreferences = this.getSharedPreferences(PREFENCES_KEY, Context.MODE_PRIVATE);
+    }
+
+    // logout user
     private void checkForUser() {
         // do we have a user in the intent?
         mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
@@ -214,15 +219,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void getPrefs() {
-        mPreferences = this.getSharedPreferences(PREFENCES_KEY, Context.MODE_PRIVATE);
-    }
-
+    // logout user
     private void logoutUser() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-
         alertBuilder.setMessage(R.string.logout);
-
         alertBuilder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -245,7 +245,6 @@ public class MainActivity extends AppCompatActivity {
         alertBuilder.create().show();
 
     }
-
     private void clearUserFromIntent() {
         getIntent().putExtra(USER_ID_KEY, -1);
     }
@@ -297,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
         mMainDisplay.setText(sb.toString());
     }
 
-
+    // Options Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
