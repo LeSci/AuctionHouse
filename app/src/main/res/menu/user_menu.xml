@@ -12,14 +12,22 @@
         app:showAsAction="ifRoom"></item>
 
     <item android:id="@+id/item2"
-        android:title="Item 2"
+        android:title="Menu"
         app:showAsAction="never">
         <menu>
             <item android:id="@+id/subitem1"
-                android:title="Sub Item 1"
+                android:title="Home"
                 app:showAsAction="never"/>
             <item android:id="@+id/subitem2"
-                android:title="Sub Item 2"
+                android:title="Items"
+                android:visible="true"
+                app:showAsAction="never"/>
+            <item android:id="@+id/subitem3"
+                android:title="Auction"
+                android:visible="true"
+                app:showAsAction="never"/>
+            <item android:id="@+id/subitem4"
+                android:title="Admin"
                 android:visible="false"
                 app:showAsAction="never"/>
         </menu>
