@@ -10,6 +10,7 @@ import com.sscire.auctionhouse.Journal;
 import com.sscire.auctionhouse.User;
 import com.sscire.auctionhouse.Auction;
 import com.sscire.auctionhouse.Bid;
+import com.sscire.auctionhouse.Item;
 import java.util.List;
 
 /**
@@ -96,4 +97,27 @@ public interface AppDAO {
 
     @Query("SELECT * FROM " + AppDatabase.BID_TABLE + " WHERE mBidId = :bidId")
     Bid getBidByBidId(int bidId);
+
+    // Item
+    @Insert
+    void insert(Item...items);
+
+    @Update
+    void update(Item...items);
+
+    @Delete
+    void delete(Item...items);
+
+    @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE)
+    List<Item> getAllItems();
+
+    @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mUserId = :userId")
+    Item getItemByUserId(int userId);
+
+    @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mUserId = :userId")
+    List<Item> getItemsByUserId(int userId);
+
+    @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mItemId = :itemId")
+    Item getItemByItemId(int itemId);
+
 }

@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mAdminButton;    // sls
 
+    private Button mItemButton;
+
    // private MenuItem mSubItem2;
 
 
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAdminButton = findViewById(R.id.mainAdminButton);  // sls
         //mSubItem2 = findViewById(R.id.subitem2);    // sls
+        mItemButton = findViewById(R.id.mainItemButton);
 
         // check for Admin access - sls
         if(mUserId != -1 && mUser.getIsAdmin()) {
@@ -103,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
                 mJournalDAO.insert(log);
 
                 refreshDisplay();
+            }
+        });
+
+        mItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ItemActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+                startActivity(intent);
             }
         });
 

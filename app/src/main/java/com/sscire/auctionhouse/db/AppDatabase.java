@@ -5,12 +5,14 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.room.Room;
 import android.content.Context;
+
+import com.sscire.auctionhouse.Item;
 import com.sscire.auctionhouse.Journal;
 import com.sscire.auctionhouse.User;
 import com.sscire.auctionhouse.db.typeConverters.DateTypeConverter;
 import com.sscire.auctionhouse.Auction;
 import com.sscire.auctionhouse.Bid;
-@Database(entities ={User.class, Journal.class, Auction.class, Bid.class}, version = 1)
+@Database(entities ={User.class, Journal.class, Auction.class, Bid.class, Item.class}, version = 1)
 @TypeConverters(DateTypeConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DB_NAME = "APP_DATABASE";
@@ -18,6 +20,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public static final String USER_TABLE = "USER_TABLE";
     public static final String AUCTION_TABLE = "AUCTION_TABLE";
     public static final String BID_TABLE = "BID_TABLE";
+    public static final String ITEM_TABLE = "ITEM_TABLE";
 
 
     private static AppDatabase instance;
