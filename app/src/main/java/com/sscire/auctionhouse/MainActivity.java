@@ -27,7 +27,7 @@ import java.util.List;
  * @author Shannon Scire
  * @since 2023.12.16
  * @version 1.0.07
- * @description An Android applicaiton that simulates an Auction House. Users can add/remove items
+ * @description An Android application that simulates an Auction House. Users can add/remove items
  * from their inventory and buy/sell items on a virtual auction house.
  * There is also a few utility features and administrator functionality
  * Project 2
