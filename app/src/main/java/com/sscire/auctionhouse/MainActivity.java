@@ -23,6 +23,16 @@ import com.sscire.auctionhouse.db.AppDatabase;
 
 import java.util.List;
 
+/**
+ * @author Shannon Scire
+ * @since 2023.12.16
+ * @version 1.0.07
+ * @description An Android applicaiton that simulates an Auction House. Users can add/remove items
+ * from their inventory and buy/sell items on a virtual auction house.
+ * There is also a few utility features and administrator functionality
+ * This is Project 2 for CST338_FA23 under Dr. Clinkenbeard.
+ */
+
 public class MainActivity extends AppCompatActivity {
     private static final String USER_ID_KEY = "com.sscire.auctionhouse.userIdKey";
     private static final String PREFENCES_KEY = "com.sscire.auctionhouse.PREFENCES_KEY";
