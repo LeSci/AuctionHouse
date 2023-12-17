@@ -72,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         mUserIdField.setText(Integer.toString(mUser.getUserId()));
         mUsernameField.setText(mUser.getUserName());
-        mPasswordField .setText(mUser.getPassword());
+        mPasswordField.setText(mUser.getPassword());
 
         mButtonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override

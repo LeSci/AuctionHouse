@@ -69,6 +69,7 @@ public class AdminActivity extends AppCompatActivity {
         mAdminUserDisplay = findViewById(R.id.adminUserDisplay);
         mAdminUserDisplay.setMovementMethod(new ScrollingMovementMethod());
         mUserIdField = findViewById(R.id.editTextUserId);
+        //mUserIdField.setShowSoftInputOnFocus(false);
 
         refreshDisplay();
 

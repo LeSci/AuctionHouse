@@ -85,7 +85,7 @@ public class AuctionActivity extends AppCompatActivity {
         mItemDisplay = findViewById(R.id.auctionItemDisplay);
         mItemDisplay.setMovementMethod(new ScrollingMovementMethod());
         mItemId = findViewById(R.id.itemIDEditText);
-        mItemId.setShowSoftInputOnFocus(false);
+        //mItemId.setShowSoftInputOnFocus(false);
 //        mItemName = findViewById(R.id.itemNameEditText);
 //        mItemPrice = findViewById(R.id.itemPriceEditText);
 
@@ -93,7 +93,7 @@ public class AuctionActivity extends AppCompatActivity {
         mAuctionDisplay.setMovementMethod(new ScrollingMovementMethod());
 
         mAuctionId = findViewById(R.id.auctionIDEditText);
-        mAuctionId.setShowSoftInputOnFocus(false);
+        //mAuctionId.setShowSoftInputOnFocus(false);
         mAuctionSubmitButton = findViewById(R.id.auctionSubmitButton);
         mAuctionBuyButton = findViewById(R.id.auctionBuyButton);
         mAuctionDeleteButton = findViewById(R.id.auctionDeleteButton);

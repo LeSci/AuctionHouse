@@ -20,7 +20,6 @@ public class User {
         mUserName = userName;
         mPassword = password;
         mIsAdmin = isAdmin;
-        // no mUserId = userId;
     }
 
     public int getUserId() {

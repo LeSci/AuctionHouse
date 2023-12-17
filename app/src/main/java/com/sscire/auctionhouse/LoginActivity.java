@@ -42,7 +42,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void wireupDisplay(){
         mUsernameField = findViewById(R.id.editTextLoginUserName);
+        //mUsernameField.setShowSoftInputOnFocus(false);
         mPasswordField = findViewById(R.id.editTextLoginPassword);
+        //mPasswordField.setShowSoftInputOnFocus(false);
 
         mButtonLogin = findViewById(R.id.buttonLogin);
 

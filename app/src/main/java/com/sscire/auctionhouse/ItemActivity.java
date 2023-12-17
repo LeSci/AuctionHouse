@@ -71,8 +71,11 @@ public class ItemActivity extends AppCompatActivity {
         mItemDisplay.setMovementMethod(new ScrollingMovementMethod());
 
         mItemId = findViewById(R.id.itemIDEditText);
+        //mItemId.setShowSoftInputOnFocus(false);
         mItemName = findViewById(R.id.itemNameEditText);
+        //mItemName.setShowSoftInputOnFocus(false);
         mItemPrice = findViewById(R.id.itemPriceEditText);
+        //mItemPrice.setShowSoftInputOnFocus(false);
 
         mButtonHome = findViewById(R.id.buttonHome);
         mItemSubmitButton = findViewById(R.id.itemSubmitButton);
