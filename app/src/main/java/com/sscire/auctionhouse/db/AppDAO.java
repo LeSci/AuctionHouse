@@ -6,10 +6,8 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-import com.sscire.auctionhouse.Journal;
 import com.sscire.auctionhouse.User;
 import com.sscire.auctionhouse.Auction;
-import com.sscire.auctionhouse.Bid;
 import com.sscire.auctionhouse.Item;
 import java.util.List;
 
@@ -20,25 +18,6 @@ import java.util.List;
  */
 @Dao
 public interface AppDAO {
-
-    // Journal
-    @Insert
-    void insert(Journal... journals);
-
-    @Update
-    void update(Journal... journals);
-
-    @Delete
-    void delete(Journal... journal);
-
-    @Query("SELECT * FROM " + AppDatabase.JOURNAL_TABLE + " ORDER BY  mDate DESC")
-    List<Journal> getAllGymLogs();
-
-    @Query("SELECT * FROM " + AppDatabase.JOURNAL_TABLE + " WHERE mLogId = :logId  ORDER BY  mDate DESC")
-    List<Journal> getGymLogsById(int logId);
-
-    @Query("SELECT * FROM " + AppDatabase.JOURNAL_TABLE + " WHERE mUserId = :userId  ORDER BY  mDate DESC")
-    List<Journal> getGymLogsByUserId(int userId);
 
     // Users
     @Insert
@@ -85,24 +64,6 @@ public interface AppDAO {
     @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE+ " WHERE mUserId = :userId")
     List<Auction> getAuctionsByUserID(int userId);
 
-    // Bid
-    @Insert
-    void insert(Bid...bids);
-
-    @Update
-    void update(Bid...bids);
-
-    @Delete
-    void delete(Bid...Bid);
-
-    @Query("SELECT * FROM " + AppDatabase.BID_TABLE)
-    List<Bid> getAllBids();
-
-    @Query("SELECT * FROM " + AppDatabase.BID_TABLE + " WHERE mUserId = :userId")
-    Bid getBidByUserId(int userId);
-
-    @Query("SELECT * FROM " + AppDatabase.BID_TABLE + " WHERE mBidId = :bidId")
-    Bid getBidByBidId(int bidId);
 
     // Item
     @Insert

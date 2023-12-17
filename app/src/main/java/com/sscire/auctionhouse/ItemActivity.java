@@ -122,12 +122,21 @@ public class ItemActivity extends AppCompatActivity {
                     if(itemUserId != mUserId){
                         throw new NumberFormatException ();
                     }
-                    mAppDAO.delete(mItem);
-                    Toast.makeText(ItemActivity.this,
-                            "Item: " + itemId + " " + itemName + " deleted."
-                            , Toast.LENGTH_SHORT).show();
-                    refreshDisplay();
-                    mItemId.setText("");
+                    Auction auction = mAppDAO.getAuctionByItemId(itemId);
+                    if(auction != null){
+                        Toast.makeText(ItemActivity.this,
+                                "Item: " + itemId + " " + itemName + " is assigned to "
+                                + "Auction: " + auction.getAuctionId() + ". Delete auction first."
+                                , Toast.LENGTH_SHORT).show();
+                                mItemId.setText("");
+                    } else {
+                        mAppDAO.delete(mItem);
+                        Toast.makeText(ItemActivity.this,
+                                "Item: " + itemId + " " + itemName + " deleted."
+                                , Toast.LENGTH_SHORT).show();
+                        refreshDisplay();
+                        mItemId.setText("");
+                    }
                 } catch (NumberFormatException e){
                     Toast.makeText(ItemActivity.this,
                             "Enter a valid itemId owned by user"

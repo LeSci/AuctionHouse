@@ -49,9 +49,17 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getValuesFromDisplay();
+                String NewUsername = mUsernameField2.getText().toString();
+                String NewPassword = mPasswordField2.getText().toString();
                 if(checkForUserInDatabase()){
-                    Toast.makeText(SignUpActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
-                } else{
+                    Toast.makeText(SignUpActivity.this,
+                            "User already exists", Toast.LENGTH_SHORT).show();
+                } if(NewUsername.length()< 5 || NewPassword.length() < 5) {
+                    Toast.makeText(SignUpActivity.this,
+                            "Minimum 5 characters for username/password", Toast.LENGTH_SHORT).show();
+                        mUsernameField2.setText("");
+                        mPasswordField2.setText("");
+                } else {
                     User newUser = new User(mUsername, mPassword, false);
                     mAppDAO.insert(newUser);
                     Toast.makeText(SignUpActivity.this,
