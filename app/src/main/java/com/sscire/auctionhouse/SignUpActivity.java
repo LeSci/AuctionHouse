@@ -57,6 +57,8 @@ public class SignUpActivity extends AppCompatActivity {
                 } if(NewUsername.length()< 5 || NewPassword.length() < 5) {
                     Toast.makeText(SignUpActivity.this,
                             "Minimum 5 characters for username/password", Toast.LENGTH_SHORT).show();
+                        mUsernameField2.setText("");
+                        mPasswordField2.setText("");
                 } else {
                     User newUser = new User(mUsername, mPassword, false);
                     mAppDAO.insert(newUser);
