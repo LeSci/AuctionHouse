@@ -30,7 +30,9 @@ import java.util.List;
  * @description An Android applicaiton that simulates an Auction House. Users can add/remove items
  * from their inventory and buy/sell items on a virtual auction house.
  * There is also a few utility features and administrator functionality
- * This is Project 2 for CST338_FA23 under Dr. Clinkenbeard.
+ * Project 2
+ * CST338_FA23
+ * Dr. Clinkenbeard.
  */
 
 public class MainActivity extends AppCompatActivity {
