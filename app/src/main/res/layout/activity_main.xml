@@ -6,18 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <TextView
         android:id="@+id/mainTextView"
         android:layout_width="364dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Home page\nGo to Items to add items\nGo to Auction to Buy/Sell Items"
+        android:text="Home page"
+        android:textAlignment="center"
+        android:textSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/main2TextView"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Go to Items to add items\nGo to Auction to Buy/Sell Items"
         android:textAlignment="center"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/mainTextView" />
+
+    <Button
+        android:id="@+id/mainItemButton"
+        android:layout_width="144dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/mainItemButton"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf= "@+id/main2TextView"/>
 
     <Button
         android:id="@+id/mainAuctionButton"
@@ -29,19 +51,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf= "@+id/mainTextView"
+        app:layout_constraintTop_toBottomOf= "@+id/mainItemButton"
         />
-    <Button
-        android:id="@+id/mainItemButton"
-        android:layout_width="144dp"
-        android:layout_height="77dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/mainItemButton"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf= "@+id/mainAuctionButton"/>
+
     <Button
         android:id="@+id/mainAdminButton"
         android:layout_width="144dp"
@@ -54,5 +66,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainItemButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/mainAuctionButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

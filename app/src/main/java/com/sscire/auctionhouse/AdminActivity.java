@@ -120,7 +120,7 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         StringBuilder sb = new StringBuilder();
-        String pad = "         ";
+        String pad = "             ";
         for (User user : mUserList) {
             String username = user.getUserName();
             String password = user.getPassword();

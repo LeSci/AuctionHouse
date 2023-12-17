@@ -12,7 +12,7 @@
         android:layout_width="364dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Welcome to the\nAuction House \n\nPlease Login or Signup."
+        android:text="Welcome to the\nAuction House \n\nPlease Login or SignUp."
         android:textAlignment="center"
         android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"

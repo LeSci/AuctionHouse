@@ -211,17 +211,17 @@ public class AuctionActivity extends AppCompatActivity {
             return;
         }
         StringBuilder sb = new StringBuilder();
-        String pad = "       ";
+        String pad = "      ";
         for (Auction auction : mAuctionList) {
             int auctionId = auction.getAuctionId();
             int auctionPrice = auction.getPrice();
             int itemId = auction.getItemId();
             Item item = mAppDAO.getItemByItemId(itemId);
-            sb.append(auctionId + pad);
-            sb.append(auction.getUserId() + pad);
-            sb.append(auction.getItemId() + pad);
-            sb.append(item.getItemName() + pad);
-            sb.append(auctionPrice + pad);
+            sb.append(pad + auctionId + pad);
+            sb.append(pad + auction.getUserId() + pad);
+            sb.append(pad + auction.getItemId() + pad);
+            sb.append(pad + item.getItemName() + pad);
+            sb.append(pad + auctionPrice + pad);
             sb.append("\n");
         }
         mAuctionDisplay.setText(sb.toString());
@@ -236,14 +236,14 @@ public class AuctionActivity extends AppCompatActivity {
         }
 
         StringBuilder sb = new StringBuilder();
-        String pad = "         ";
+        String pad = "      ";
         for (Item item : mItemList) {
             String itemName = item.getItemName();
             int itemPrice = item.getItemPrice();
-            sb.append(item.getItemId() + pad);
-            sb.append(item.getUserId() + pad);
-            sb.append(itemName + pad);
-            sb.append(itemPrice + pad);
+            sb.append(pad + item.getItemId() + pad);
+            sb.append(pad + item.getUserId() + pad);
+            sb.append(pad + itemName + pad);
+            sb.append(pad + itemPrice + pad);
             sb.append("\n");
         }
         mItemDisplay.setText(sb.toString());

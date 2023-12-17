@@ -48,19 +48,14 @@
     <EditText
         android:id="@+id/editTextUserId"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/userId"
         android:textAlignment="center"
         android:inputType="number"
         android:gravity="center"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="139dp"
-        android:layout_marginEnd="144dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adminUserDisplay" />
 
@@ -74,11 +69,8 @@
         tools:visibility="visible"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="139dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="144dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserId" />
@@ -93,7 +85,8 @@
         android:gravity="center"
         android:text="@string/return_home"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/adminSubmitButton"
-        tools:layout_editor_absoluteX="139dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminSubmitButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
