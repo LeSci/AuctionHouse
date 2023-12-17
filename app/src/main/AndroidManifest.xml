@@ -23,9 +23,6 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".BidActivity"
-            android:exported="false" />
-        <activity
             android:name=".ItemActivity"
             android:exported="false" />
         <activity

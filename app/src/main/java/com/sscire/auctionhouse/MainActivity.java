@@ -3,23 +3,17 @@ package com.sscire.auctionhouse;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sscire.auctionhouse.db.AppDAO;
@@ -32,10 +26,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final String USER_ID_KEY = "com.sscire.auctionhouse.userIdKey";
     private static final String PREFENCES_KEY = "com.sscire.auctionhouse.PREFENCES_KEY";
-    private AppDAO mJournalDAO;
-
-    private List<Journal> mJournal;
-
+    private AppDAO mAppDAO;
     private int mUserId = -1;
 
     private SharedPreferences mPreferences = null;
@@ -104,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser(int userId) {
-        mUser = mJournalDAO.getUserByUserId(userId);
+        mUser = mAppDAO.getUserByUserId(userId);
         addUserToPreference(userId);
         invalidateOptionsMenu();
     }
@@ -121,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getDatabase() {
-        mJournalDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
+        mAppDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
                 .build()
                 .getAppDAO();
@@ -147,11 +138,11 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         //do we have any users at all?
-        List<User> users = mJournalDAO.getAllUsers();
+        List<User> users = mAppDAO.getAllUsers();
         if (users.size() <= 0) {
             User defaultUser = new User("testuser1", "testuser1", false);
             User altUser = new User("admin2", "admin2", true);
-            mJournalDAO.insert(defaultUser,altUser);
+            mAppDAO.insert(defaultUser,altUser);
         }
         Intent intent = LoginActivity.intentFactory(this);
         startActivity(intent);
@@ -189,10 +180,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void clearUserFromPref() {
         addUserToPreference(-1);
-    }
-
-    private Journal getValuesFromDisplay() {
-        return null;
     }
 
     // Options Menu
