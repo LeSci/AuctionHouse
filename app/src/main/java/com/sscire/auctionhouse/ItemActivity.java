@@ -71,8 +71,11 @@ public class ItemActivity extends AppCompatActivity {
         mItemDisplay.setMovementMethod(new ScrollingMovementMethod());
 
         mItemId = findViewById(R.id.itemIDEditText);
+        //mItemId.setShowSoftInputOnFocus(false);
         mItemName = findViewById(R.id.itemNameEditText);
+        //mItemName.setShowSoftInputOnFocus(false);
         mItemPrice = findViewById(R.id.itemPriceEditText);
+        //mItemPrice.setShowSoftInputOnFocus(false);
 
         mButtonHome = findViewById(R.id.buttonHome);
         mItemSubmitButton = findViewById(R.id.itemSubmitButton);
@@ -151,14 +154,14 @@ public class ItemActivity extends AppCompatActivity {
         }
 
         StringBuilder sb = new StringBuilder();
-        String pad = "         ";
+        String pad = "      ";
         for (Item item : mItemList) {
             String itemName = item.getItemName();
             int itemPrice = item.getItemPrice();
-            sb.append(item.getItemId() + pad);
-            sb.append(item.getUserId() + pad);
-            sb.append(itemName + pad);
-            sb.append(itemPrice + pad);
+            sb.append(pad + item.getItemId() + pad);
+            sb.append(pad + item.getUserId() + pad);
+            sb.append(pad + itemName + pad);
+            sb.append(pad + itemPrice + pad);
             sb.append("\n");
         }
         mItemDisplay.setText(sb.toString());

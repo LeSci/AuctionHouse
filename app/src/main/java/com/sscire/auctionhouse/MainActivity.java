@@ -32,17 +32,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final String USER_ID_KEY = "com.sscire.auctionhouse.userIdKey";
     private static final String PREFENCES_KEY = "com.sscire.auctionhouse.PREFENCES_KEY";
-    private TextView mMainDisplay;
-
-    //TODO:DEBUG
-    private TextView mDebug;
-
-    private EditText mExercise;
-    private EditText mWeight;
-    private EditText mReps;
-
-    private Button mSubmitButton;
-
     private AppDAO mJournalDAO;
 
     private List<Journal> mJournal;
@@ -70,17 +59,6 @@ public class MainActivity extends AppCompatActivity {
         checkForUser();
         loginUser(mUserId);
 
-        //        debug();
-
-        mMainDisplay = findViewById(R.id.mainGymLogDisplay);
-        mMainDisplay.setMovementMethod(new ScrollingMovementMethod());
-
-        mExercise = findViewById(R.id.mainExerciseEditText);
-        mWeight = findViewById(R.id.mainWeightEditText);
-        mReps = findViewById(R.id.mainRepsEditText);
-
-        mSubmitButton = findViewById(R.id.mainSubmitButton);
-
         mAdminButton = findViewById(R.id.mainAdminButton);  // sls
         //mSubItem2 = findViewById(R.id.subitem2);    // sls
         mItemButton = findViewById(R.id.mainItemButton);
@@ -94,23 +72,6 @@ public class MainActivity extends AppCompatActivity {
             mAdminButton.setVisibility(View.INVISIBLE);
            // mSubItem2.setVisible(false);
         }
-
-        refreshDisplay();
-
-        mSubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Journal log = getValuesFromDisplay();
-
-                // sls  
-                //CST338_SP20 > Adding users to the GymLog > 1:17:00
-                //log.setUserId(mUser.getUserId());
-
-                mJournalDAO.insert(log);
-
-                refreshDisplay();
-            }
-        });
 
         mItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,28 +101,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void debug() {
-        mDebug = findViewById(R.id.DEBUG);
-        mDebug.setMovementMethod(new ScrollingMovementMethod());
-        List<User> users = mJournalDAO.getAllUsers();
-        //LiveData<List<User>> users = mJournalDAO.getAllUsers();
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("All users:\n");
-
-        for(User u : users){
-            sb.append(u);
-            sb.append("\n");
-        }
-
-
-        sb.append("all Logs\n");
-        List<Journal> logs = mJournalDAO.getAllGymLogs();
-        for(Journal log : logs){
-            sb.append(log);
-        }
-
-        mDebug.setText(sb.toString());
     }
 
     private void loginUser(int userId) {
@@ -169,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         addUserToPreference(userId);
         invalidateOptionsMenu();
     }
-
 
 
     private void addUserToPreference(int userId) {
@@ -254,46 +192,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Journal getValuesFromDisplay() {
-        String exercise = "No record found";
-        double weight = 0.0;
-        int reps = 0;
-
-        exercise = mExercise.getText().toString();
-
-        try {
-            weight = Double.parseDouble(mWeight.getText().toString());
-        } catch (NumberFormatException e) {
-            Log.d("Journal", "Couldn't convert weight");
-        }
-
-        try {
-            reps = Integer.parseInt(mReps.getText().toString());
-        } catch (NumberFormatException e) {
-            Log.d("Journal", "Couldn't convert reps");
-        }
-
-        Journal log = new Journal(exercise, reps, weight, mUserId);
-
-        return log;
-
-    }
-
-    private void refreshDisplay() {
-        mJournal = mJournalDAO.getGymLogsByUserId(mUserId);
-
-        if (mJournal.size() <= 0) {
-            mMainDisplay.setText(R.string.noLogsMessage);
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        for (Journal log : mJournal) {
-            sb.append(log);
-            sb.append("\n");
-            sb.append("=-=-=-=-=-=-=-=-");
-            sb.append("\n");
-        }
-        mMainDisplay.setText(sb.toString());
+        return null;
     }
 
     // Options Menu

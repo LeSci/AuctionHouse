@@ -69,6 +69,7 @@ public class AdminActivity extends AppCompatActivity {
         mAdminUserDisplay = findViewById(R.id.adminUserDisplay);
         mAdminUserDisplay.setMovementMethod(new ScrollingMovementMethod());
         mUserIdField = findViewById(R.id.editTextUserId);
+        //mUserIdField.setShowSoftInputOnFocus(false);
 
         refreshDisplay();
 
@@ -120,7 +121,7 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         StringBuilder sb = new StringBuilder();
-        String pad = "         ";
+        String pad = "             ";
         for (User user : mUserList) {
             String username = user.getUserName();
             String password = user.getPassword();

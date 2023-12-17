@@ -7,57 +7,81 @@
     tools:context=".AuctionActivity">
 
     <TextView
-        android:id="@+id/textview_auctionHeading"
-        android:text="auctionID   |   userID   |   itemID   |   Item Name  |   Price"
-        android:layout_width="match_parent"
+        android:id="@+id/auctionTextView"
+        android:layout_width="364dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="12sp"
+        android:text="Current Auctions"
+        android:textAlignment="center"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textview_auctionHeading"
+        android:text="auctionID | userID | itemID |   Item Name  |   Price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auctionTextView" />
+
+    <TextView
         android:id="@+id/auctionDisplay"
         android:layout_width="374dp"
-        android:layout_height="128dp"
+        android:layout_height="96dp"
         android:layout_marginTop="16dp"
         android:fadeScrollbars="true"
         android:scrollbars="vertical"
         android:text="itemList"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textview_auctionHeading" />
 
     <TextView
-        android:id="@+id/textview_itemheading"
-        android:text="itemID    |    userID    |    Item Name   |    Price    "
-        android:layout_width="match_parent"
+        android:id="@+id/auction2TextView"
+        android:layout_width="364dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="12sp"
+        android:text="Item Inventory"
+        android:textAlignment="center"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auctionDisplay" />
 
     <TextView
+        android:id="@+id/textview_itemheading"
+        android:text="itemID  |  userID  |    Item Name   |    Price    "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auction2TextView" />
+
+    <TextView
         android:id="@+id/auctionItemDisplay"
         android:layout_width="374dp"
-        android:layout_height="128dp"
+        android:layout_height="96dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:fadeScrollbars="true"
         android:scrollbars="vertical"
         android:text="itemList"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_itemheading" />
+        app:layout_constraintTop_toTopOf="@+id/textview_itemheading" />
 
     <EditText
         android:id="@+id/auctionIDEditText"
@@ -97,14 +121,13 @@
         android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="4dp"
         android:gravity="center"
         android:text="Add Auction"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/auctionBuyButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/itemIDEditText" />
 
     <Button
         android:id="@+id/auctionBuyButton"
@@ -112,14 +135,13 @@
         android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="4dp"
         android:gravity="center"
         android:text="Buy Auction"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/auctionDeleteButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/auctionSubmitButton"/>
 
     <Button
         android:id="@+id/auctionDeleteButton"
@@ -127,8 +149,6 @@
         android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-
-        android:layout_marginBottom="4dp"
         android:gravity="center"
         android:text="Delete Auction"
         android:textAlignment="center"
@@ -136,7 +156,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/buttonHome"/>
+        app:layout_constraintTop_toBottomOf="@+id/auctionBuyButton"/>
 
     <Button
         android:id="@+id/buttonHome"
@@ -144,11 +164,10 @@
         android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="4dp"
         android:gravity="center"
         android:text="@string/return_home"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/auctionDeleteButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

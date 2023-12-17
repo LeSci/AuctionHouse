@@ -15,11 +15,11 @@ public class User {
     private String mUserName;
     private String mPassword;
     private boolean mIsAdmin;
+
     public User(String userName, String password, boolean isAdmin) {
         mUserName = userName;
         mPassword = password;
         mIsAdmin = isAdmin;
-        // no mUserId = userId;
     }
 
     public int getUserId() {

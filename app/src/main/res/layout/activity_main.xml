@@ -6,138 +6,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <TextView
-        android:id="@+id/DEBUG"
-        android:layout_width="277dp"
-        android:layout_height="238dp"
-        android:layout_marginTop="20dp"
-        android:text="debug"
+        android:id="@+id/mainTextView"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Home page"
         android:textAlignment="center"
-        android:visibility="gone"
+        android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.649"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainSubmitButton" />
-
-    <TextView
-        android:id="@+id/mainGymLogDisplay"
-        android:layout_width="374dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:fadeScrollbars="true"
-        android:scrollbars="vertical"
-        android:text="@string/app_name"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/mainExerciseEditText"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/main2TextView"
+        android:layout_width="364dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/mainExerciseHint"
-        android:inputType="textPersonName"
-        android:visibility="invisible"
-        tools:visibility="visible"
+        android:text="Go to Items to add items\nGo to Auction to Buy/Sell Items"
+        android:textAlignment="center"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainGymLogDisplay" />
-
-    <EditText
-        android:id="@+id/mainWeightEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/mainWeightHint"
-        android:inputType="numberSigned"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainExerciseEditText" />
-
-    <EditText
-        android:id="@+id/mainRepsEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/mainRepsHint"
-        android:inputType="numberSigned"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainWeightEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/mainTextView" />
 
     <Button
-        android:id="@+id/mainSubmitButton"
+        android:id="@+id/mainItemButton"
         android:layout_width="144dp"
         android:layout_height="77dp"
-        android:text="@string/mainSubmitButton"
-        android:textSize="24sp"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="281dp"
-        app:layout_constraintTop_toBottomOf="@+id/mainRepsEditText" />
-    <Button
-        android:id="@+id/mainBidButton"
-        android:layout_width="144dp"
-        android:layout_height="77dp"
-        android:text="@string/mainBidButton"
+        android:layout_marginTop="16dp"
+        android:text="@string/mainItemButton"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf= "@+id/mainSubmitButton"
-        />
+        app:layout_constraintTop_toBottomOf= "@+id/main2TextView"/>
+
     <Button
         android:id="@+id/mainAuctionButton"
         android:layout_width="144dp"
         android:layout_height="77dp"
         android:text="@string/mainAuctionButton"
         android:textSize="24sp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf= "@+id/mainBidButton"
+        app:layout_constraintTop_toBottomOf= "@+id/mainItemButton"
         />
-    <Button
-        android:id="@+id/mainItemButton"
-        android:layout_width="144dp"
-        android:layout_height="77dp"
-        android:text="@string/mainItemButton"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf= "@+id/mainAuctionButton"/>
+
     <Button
         android:id="@+id/mainAdminButton"
         android:layout_width="144dp"
         android:layout_height="77dp"
+        android:layout_marginTop="16dp"
         android:text="@string/mainAdminButton"
         android:textSize="24sp"
         android:visibility="invisible"
@@ -145,5 +66,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainItemButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/mainAuctionButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

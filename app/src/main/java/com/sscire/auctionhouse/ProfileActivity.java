@@ -72,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         mUserIdField.setText(Integer.toString(mUser.getUserId()));
         mUsernameField.setText(mUser.getUserName());
-        mPasswordField .setText(mUser.getPassword());
+        mPasswordField.setText(mUser.getPassword());
 
         mButtonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +81,8 @@ public class ProfileActivity extends AppCompatActivity {
                 if(UserID == 1 || UserID == 2){
                     Toast.makeText(ProfileActivity.this, "Unable to update default accounts."
                             , Toast.LENGTH_SHORT).show();
+                    mUsernameField.setText(mUser.getUserName());
+                    mPasswordField.setText(mUser.getPassword());
                 } else {
                     String UpdatedUserName = mUsernameField.getText().toString();
                     String UpdatedPassword = mPasswordField.getText().toString();
