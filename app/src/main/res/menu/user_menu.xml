@@ -30,6 +30,10 @@
                 android:title="Admin"
                 android:visible="false"
                 app:showAsAction="never"/>
+            <item android:id="@+id/subitem5"
+                android:title="Fragment"
+                android:visible="false"
+                app:showAsAction="never"/>
         </menu>
     </item>
 </menu>

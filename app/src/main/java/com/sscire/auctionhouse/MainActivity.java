@@ -210,14 +210,17 @@ public class MainActivity extends AppCompatActivity {
         }
         // sls - set subitem2 visible us currently logged-in user is admin
         // https://stackoverflow.com/questions/9030268/set-visibility-in-menu-programmatically-android
-        MenuItem register = menu.findItem(R.id.subitem4);
+        MenuItem register4 = menu.findItem(R.id.subitem4);
+        MenuItem register5 = menu.findItem(R.id.subitem5);
         if(mUserId != -1 && mUser.getIsAdmin())
         {
-            register.setVisible(true);
+            register4.setVisible(true);
+            register5.setVisible(true);
         }
         else
         {
-            register.setVisible(false);
+            register4.setVisible(false);
+            register5.setVisible(true);
         }
         // sls
         invalidateOptionsMenu();
@@ -256,6 +259,13 @@ public class MainActivity extends AppCompatActivity {
             if (mUser.getIsAdmin()) {
                 Toast.makeText(this, "Admin", Toast.LENGTH_SHORT).show();
                 Intent intent = AdminActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+                startActivity(intent);
+            }
+            return true;
+        } else if (itemId == R.id.subitem5) {
+            if (mUser.getIsAdmin()) {
+                Toast.makeText(this, "ExampleFragment", Toast.LENGTH_SHORT).show();
+                Intent intent = ExampleFragmentActivity.intentFactory(getApplicationContext(),mUser.getUserId());
                 startActivity(intent);
             }
             return true;
