@@ -42,6 +42,13 @@ public interface AppDAO {
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE mUserId = :userId")
     User getUserByUserId(int userId);
 
+    // LiveData
+    @Query("SELECT * FROM " + AppDatabase.USER_TABLE)
+    LiveData<List<User>> getAllUsers2();
+
+
+
+
     // Auction
     @Insert
     void insert(Auction...auctions);
@@ -54,11 +61,6 @@ public interface AppDAO {
 
     @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE)
     List<Auction> getAllAuctions();
-
-//    @RewriteQueriesToDropUnusedColumns
-//    @Query("select * from AUCTION_TABLE inner join USER_TABLE on AUCTION_TABLE.mUserId = USER_TABLE.mUserId" )
-//    HashMap<Auction, User> getAllAuctions2();
-
 
     @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE + " WHERE mUserId = :userId")
     Auction getAuctionByUserId(int userId);
