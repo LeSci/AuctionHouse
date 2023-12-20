@@ -58,7 +58,7 @@
 
     <TextView
         android:id="@+id/textview_itemheading"
-        android:text="itemID  |  Username  |    Item Name   |    Price    "
+        android:text="@string/itemHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

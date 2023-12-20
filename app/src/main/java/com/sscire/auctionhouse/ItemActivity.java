@@ -167,8 +167,11 @@ public class ItemActivity extends AppCompatActivity {
         for (Item item : mItemList) {
             String itemName = item.getItemName();
             int itemPrice = item.getItemPrice();
+            int userid = item.getUserId();
+            User user = mAppDAO.getUserByUserId(userid);
             sb.append(pad + item.getItemId() + pad);
-            sb.append(pad + item.getUserId() + pad);
+            //sb.append(pad + item.getUserId() + pad);
+            sb.append(pad + user.getUserName() + pad);
             sb.append(pad + itemName + pad);
             sb.append(pad + itemPrice + pad);
             sb.append("\n");
