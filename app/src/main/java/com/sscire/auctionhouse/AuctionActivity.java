@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class AuctionActivity extends AppCompatActivity {
@@ -216,12 +217,15 @@ public class AuctionActivity extends AppCompatActivity {
             int auctionId = auction.getAuctionId();
             int auctionPrice = auction.getPrice();
             int itemId = auction.getItemId();
+            int userId = auction.getUserId();
             Item item = mAppDAO.getItemByItemId(itemId);
-            sb.append(pad + auctionId + pad);
-            sb.append(pad + auction.getUserId() + pad);
-            sb.append(pad + auction.getItemId() + pad);
+            User user = mAppDAO.getUserByUserId(userId);
+            sb.append(pad +  "   " + auctionId + pad);
+            //sb.append(pad + item.getUserId() + pad);
+            sb.append(pad + user.getUserName() + pad);
+            //sb.append(pad + auction.getItemId() + pad);
             sb.append(pad + item.getItemName() + pad);
-            sb.append(pad + auctionPrice + pad);
+            sb.append(auctionPrice + pad);
             sb.append("\n");
         }
         mAuctionDisplay.setText(sb.toString());
@@ -236,16 +240,22 @@ public class AuctionActivity extends AppCompatActivity {
         }
 
         StringBuilder sb = new StringBuilder();
-        String pad = "      ";
+        String pad = "           ";
         for (Item item : mItemList) {
-            String itemName = item.getItemName();
+            String itemName = (item.getItemName() + pad).substring(0, 11);
             int itemPrice = item.getItemPrice();
-            sb.append(pad + item.getItemId() + pad);
-            sb.append(pad + item.getUserId() + pad);
-            sb.append(pad + itemName + pad);
-            sb.append(pad + itemPrice + pad);
+            int userid = item.getUserId();
+            User user = mAppDAO.getUserByUserId(userid);
+            String username = (user.getUserName() + pad).substring(0, 11);
+            String itemId = (item.getItemId() + pad).substring(0,7);
+            sb.append("     " + itemId + "     ");
+            //sb.append(pad + item.getUserId() + pad);
+            sb.append(username + "  ");
+            sb.append(itemName + "       ");
+            sb.append(itemPrice);
             sb.append("\n");
         }
+
         mItemDisplay.setText(sb.toString());
     }
 

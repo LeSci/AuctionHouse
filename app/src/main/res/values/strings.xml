@@ -24,4 +24,7 @@
     <string name="adminSubmitButton">Update IsAdmin</string>
     <string name="adminuserlist">adminUserList</string>
     <string name="no_items_in_database">No items in database.</string>
+    <string name="itemHeading"> itemID |  Username  |  Item Name  |  Price</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

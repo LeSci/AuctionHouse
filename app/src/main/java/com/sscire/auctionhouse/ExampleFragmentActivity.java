@@ -10,14 +10,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sscire.auctionhouse.db.AppDAO;
@@ -25,7 +20,9 @@ import com.sscire.auctionhouse.db.AppDatabase;
 
 import java.util.List;
 
-public class AdminActivity extends AppCompatActivity {
+public class ExampleFragmentActivity extends AppCompatActivity {
+
+    // Code for tracking logged in user
     private static final String USER_ID_KEY = "com.sscire.auctionhouse.userIdKey";
     private static final String PREFENCES_KEY = "com.sscire.auctionhouse.PREFENCES_KEY";
     private User mUser;
@@ -33,28 +30,34 @@ public class AdminActivity extends AppCompatActivity {
     private AppDAO mAppDAO;
     private SharedPreferences mPreferences = null;
 
-    private Button mButtonHome;
-    private Button mButtonUpdateIsAdmin;
 
-    private TextView mAdminUserDisplay;
-
-    private List<User> mUserList;
-
-    private EditText mUserIdField;
-
+    // Code for fragment
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_example_fragment);
 
         mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
         getDatabase();
         mUser = mAppDAO.getUserByUserId(mUserId);
-        wireupDisplay();
+
+//        // messy code, can replace with Factory method in ExampleFragment class
+//        ExampleFragment fragment = new ExampleFragment();
+//        Bundle args = new Bundle();
+//        args.putString("argText", "example text");
+//        args.putInt("argNumber", 123);
+//        fragment.setArguments(args);
+
+        ExampleFragment fragment =
+                ExampleFragment.newInstance("example text", 123, "example text2");
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
     }
+
+
+    // Code for tracking logged in user and Options Menu
 
     private void getDatabase(){
         mAppDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
@@ -63,78 +66,6 @@ public class AdminActivity extends AppCompatActivity {
                 .getAppDAO();
     }
 
-    private void wireupDisplay() {
-        mButtonHome = findViewById(R.id.buttonHome);
-        mButtonUpdateIsAdmin = findViewById(R.id.adminSubmitButton);
-        mAdminUserDisplay = findViewById(R.id.adminUserDisplay);
-        mAdminUserDisplay.setMovementMethod(new ScrollingMovementMethod());
-        mUserIdField = findViewById(R.id.editTextUserId);
-        //mUserIdField.setShowSoftInputOnFocus(false);
-
-        refreshDisplay();
-
-        mButtonUpdateIsAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try{
-                    int userID = Integer.parseInt(mUserIdField.getText().toString());
-                    if (userID == 1 || userID == 2){
-                        Toast.makeText(AdminActivity.this, "Unable to change default accounts."
-                                , Toast.LENGTH_SHORT).show();
-                        mUserIdField.setText("");
-                    } else {
-                        User user = mAppDAO.getUserByUserId(userID);
-                        if (user == null) {
-                            throw new NumberFormatException();
-                        }
-                        user.setIsAdmin(!user.getIsAdmin());
-                        mAppDAO.update(user);
-                        Toast.makeText(AdminActivity.this,
-                                user.getUserName() + " updated", Toast.LENGTH_SHORT).show();
-                        mUserIdField.setText("");
-                        refreshDisplay();
-                    }
-                } catch (NumberFormatException e) {
-                    Toast.makeText(AdminActivity.this,
-                            "Enter valid UserId", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        mButtonHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = MainActivity.intentFactory(getApplicationContext(),mUserId);
-                startActivity(intent);
-            }
-        });
-
-
-    } // close wireupDisplay
-
-    private void refreshDisplay() {
-        mUserList = mAppDAO.getAllUsers();
-
-        if (mUserList.size() <= 0) {
-            mAdminUserDisplay.setText(R.string.noLogsMessage);
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        String padUsername = "           ";
-        for (User user : mUserList) {
-            String username = (user.getUserName() + padUsername);
-            String password = (user.getPassword() + padUsername);
-            sb.append("   " + user.getUserId() + "     ");
-            sb.append(username.substring(0,11) + "     ");
-            sb.append(password.substring(0,11) + "     ");
-            sb.append(user.getIsAdmin());
-            sb.append("\n");
-        }
-        mAdminUserDisplay.setText(sb.toString());
-    }
-
-    // Options Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -236,10 +167,10 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public static Intent intentFactory(Context context, int userId) {
-        Intent intent = new Intent(context, AdminActivity.class);
+        Intent intent = new Intent(context, ExampleFragmentActivity.class);
         intent.putExtra(USER_ID_KEY, userId);
+
         return intent;
     }
 }

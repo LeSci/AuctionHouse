@@ -23,16 +23,19 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract AppDAO getAppDAO();
 
+    // MVVM
+    //public static synchronized AppDatabase getInstance(Context context)
+    // synchronized limits access to one thread at a time
     //sls
     public static AppDatabase getInstance(Context context){
         if (instance == null){
             synchronized (AppDatabase.class){
-                if(instance == null){
+        //        if(instance == null){
                     instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class,
                             DB_NAME)
                             .fallbackToDestructiveMigration()
                             .build();
-                } // end if
+        //        } // end if
             } // end synchronized
         } // end if
         return instance;

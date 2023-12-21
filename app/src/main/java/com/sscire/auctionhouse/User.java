@@ -1,5 +1,6 @@
 package com.sscire.auctionhouse;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import com.sscire.auctionhouse.db.AppDatabase;
 /**

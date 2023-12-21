@@ -41,6 +41,8 @@ dependencies {
         var room_version = "2.6.1"
         def lifecycle_version = "2.6.2"
 
+
+        // Room components
         implementation("androidx.room:room-runtime:$room_version")
         annotationProcessor("androidx.room:room-compiler:$room_version")
         // optional - Kotlin Extensions and Coroutines support for Room
@@ -70,6 +72,9 @@ dependencies {
     // Annotation processor
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
-
+    // MVVM
+    def appcompat_version = "1.6.1" //"1.2.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'androidx.compose.material:material:1.1.1'
 
 }

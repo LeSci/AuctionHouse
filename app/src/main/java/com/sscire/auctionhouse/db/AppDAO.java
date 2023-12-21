@@ -5,10 +5,13 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RewriteQueriesToDropUnusedColumns;
 import androidx.room.Update;
 import com.sscire.auctionhouse.User;
 import com.sscire.auctionhouse.Auction;
 import com.sscire.auctionhouse.Item;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -39,6 +42,13 @@ public interface AppDAO {
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE mUserId = :userId")
     User getUserByUserId(int userId);
 
+    // LiveData
+    @Query("SELECT * FROM " + AppDatabase.USER_TABLE)
+    LiveData<List<User>> getAllUsers2();
+
+
+
+
     // Auction
     @Insert
     void insert(Auction...auctions);
@@ -63,6 +73,7 @@ public interface AppDAO {
 
     @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE+ " WHERE mUserId = :userId")
     List<Auction> getAuctionsByUserID(int userId);
+
 
 
     // Item
