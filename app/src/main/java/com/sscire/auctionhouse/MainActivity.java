@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String USER_ID_KEY = "com.sscire.auctionhouse.userIdKey";
     private static final String PREFENCES_KEY = "com.sscire.auctionhouse.PREFENCES_KEY";
     private AppDAO mAppDAO;
-    private int mUserId = -1;
+    private static int mUserId = -1;
 
     private SharedPreferences mPreferences = null;
     private User mUser;
@@ -101,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public static int getmUserId() {
+        return mUserId;
     }
 
     private void debug() {

@@ -16,6 +16,9 @@ import java.util.List;
 public class ItemViewModel extends AndroidViewModel {
     private ItemRepository mRepository;
     private LiveData<List<Item>> allItems;
+    private LiveData<List<Item>> userItems;
+
+    private int mUserId = 1;
 
     // AndroidViewModel gets passed application and constructor
     // Never store a context of an activity or a view that references an activity
@@ -27,6 +30,7 @@ public class ItemViewModel extends AndroidViewModel {
         super(application);
         mRepository = new ItemRepository(application);
         allItems = mRepository.getAllItems();
+        userItems = mRepository.getUserItems();
     }
 
     public void insert(Item item) { mRepository.insert(item); }
@@ -45,5 +49,9 @@ public class ItemViewModel extends AndroidViewModel {
 
     public LiveData<List<Item>> getAllItems() {
         return allItems;
+    }
+
+    public LiveData<List<Item>> getUserItems() {
+        return userItems;
     }
 }

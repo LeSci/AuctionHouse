@@ -106,6 +106,9 @@ public interface AppDAO {
     @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mUserId = :userId")
     List<Item> getItemsByUserId(int userId);
 
+    @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mUserId = :userId")
+    LiveData<List<Item>> getItemsByUserId2(int userId);
+
     @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mItemId = :itemId")
     Item getItemByItemId(int itemId);
 

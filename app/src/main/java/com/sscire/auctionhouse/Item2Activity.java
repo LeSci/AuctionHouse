@@ -4,6 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.sscire.auctionhouse.db.AppDAO;
-import com.sscire.auctionhouse.viewmodel.UserViewModel;
+import com.sscire.auctionhouse.viewmodel.ItemViewModel;
 
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class Item2Activity extends AppCompatActivity {
     private AppDAO mAppDAO;
 
     // MVVM
-    private UserViewModel mUserViewModel;
+    private ItemViewModel mItemViewModel;
 
 
     @Override
@@ -40,17 +42,31 @@ public class Item2Activity extends AppCompatActivity {
         mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
         wireupDisplay();
 
+        // MVVM
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        final ItemAdapter adapter = new ItemAdapter();
+        recyclerView.setAdapter(adapter);
+
         //mUserViewModel = ViewModelProvider.of(this).get(UserViewModel.class);
-        mUserViewModel = new ViewModelProvider(this,
+        mItemViewModel = new ViewModelProvider(this,
                 new ViewModelProvider.AndroidViewModelFactory(getApplication()))
-                .get(UserViewModel.class);
-        mUserViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
+                .get(ItemViewModel.class);
+
+        //  mItemViewModel.getAllItems().observe(this, new Observer<List<Item>>() {
+
+        mItemViewModel.getUserItems().observe(this, new Observer<List<Item>>() {
             @Override
-            public void onChanged(@Nullable List<User> notes) {
+            public void onChanged(@Nullable List<Item> items) {
+                //mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
                 //update RecyclerView
-                //adapter.setNotes(notes);
+                adapter.setItems(items);
                 //adapter.submitList(notes);
+                String userid = String.valueOf(mUserId);
                 Toast.makeText(Item2Activity.this, "onChanged", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Item2Activity.this, userid, Toast.LENGTH_SHORT).show();
             }
         });
     }

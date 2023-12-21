@@ -36,9 +36,6 @@ public class Admin2Activity extends AppCompatActivity {
     private UserViewModel mUserViewModel;
 
     // setup reference to RecyclerView
-    RecyclerView recyclerView = findViewById(R.id.recyclerview);
-    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    recyclerView.setHasFixedSize(true);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +46,25 @@ public class Admin2Activity extends AppCompatActivity {
         mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
         wireupDisplay();
 
+        // MVVM
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        final UserAdapter adapter = new UserAdapter();
+        recyclerView.setAdapter(adapter);
+
         //mUserViewModel = ViewModelProvider.of(this).get(UserViewModel.class);
         mUserViewModel = new ViewModelProvider(this,
                 new ViewModelProvider.AndroidViewModelFactory(getApplication()))
                 .get(UserViewModel.class);
         mUserViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
             @Override
-            public void onChanged(@Nullable List<User> notes) {
+            public void onChanged(@Nullable List<User> users) {
                 //update RecyclerView
-                //adapter.setNotes(notes);
-                //adapter.submitList(notes);
-                Toast.makeText(Admin2Activity.this, "onChanged", Toast.LENGTH_SHORT).show();
+                adapter.setUsers(users);
+                //adapter.submitList(users);
+                //Toast.makeText(Admin2Activity.this, "onChanged", Toast.LENGTH_SHORT).show();
             }
         });
     }
