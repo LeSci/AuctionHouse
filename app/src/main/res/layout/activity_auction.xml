@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/textview_auctionHeading"
-        android:text="auctionID |    Username    |   Item Name  |   Price"
+        android:text=" auctionID |  Username  |  Item Name  |  Price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
