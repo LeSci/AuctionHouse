@@ -121,13 +121,13 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         StringBuilder sb = new StringBuilder();
-        String pad = "             ";
+        String padUsername = "           ";
         for (User user : mUserList) {
-            String username = user.getUserName();
-            String password = user.getPassword();
-            sb.append(user.getUserId() + pad);
-            sb.append(username + pad);
-            sb.append(password + pad);
+            String username = (user.getUserName() + padUsername);
+            String password = (user.getPassword() + padUsername);
+            sb.append("   " + user.getUserId() + "     ");
+            sb.append(username.substring(0,11) + "     ");
+            sb.append(password.substring(0,11) + "     ");
             sb.append(user.getIsAdmin());
             sb.append("\n");
         }
