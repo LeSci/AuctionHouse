@@ -34,6 +34,14 @@
                 android:title="Fragment"
                 android:visible="false"
                 app:showAsAction="never"/>
+            <item android:id="@+id/subitem6"
+                android:title="Admin2Activity"
+                android:visible="false"
+                app:showAsAction="never"/>
+            <item android:id="@+id/subitem7"
+                android:title="Item2Activity"
+                android:visible="false"
+                app:showAsAction="never"/>
         </menu>
     </item>
 </menu>

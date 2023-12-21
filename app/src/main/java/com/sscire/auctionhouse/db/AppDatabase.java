@@ -1,10 +1,14 @@
 package com.sscire.auctionhouse.db;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.room.Room;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.sscire.auctionhouse.Item;
 import com.sscire.auctionhouse.User;
@@ -34,6 +38,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class,
                             DB_NAME)
                             .fallbackToDestructiveMigration()
+                            //.addCallback(roomCallback)
                             .build();
         //        } // end if
             } // end synchronized
@@ -41,4 +46,31 @@ public abstract class AppDatabase extends RoomDatabase {
         return instance;
     } // end method
 
+    // MVVM
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            new PopulateDbAsyncTask(instance).execute();
+        }
+    };
+
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AppDAO appDAO;
+
+        private PopulateDbAsyncTask(AppDatabase db) {
+            appDAO = db.getAppDAO();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            User defaultUser = new User("testuser1", "testuser1", false);
+            User altUser = new User("admin2", "admin2", true);
+            appDAO.insert(defaultUser,altUser);
+//            appDAO.insert(new Note("Title 1", "Description 1", 1));
+//            appDAO.insert(new Note("Title 2", "Description 2", 2));
+//            appDAO.insert(new Note("Title 3", "Description 3", 3));
+            return null;
+        }
+    }
 }

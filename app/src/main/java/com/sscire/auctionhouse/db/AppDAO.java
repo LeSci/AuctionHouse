@@ -59,8 +59,14 @@ public interface AppDAO {
     @Delete
     void delete(Auction...auction);
 
+    @Query("DELETE FROM " + AppDatabase.AUCTION_TABLE)
+    void deleteAllAuctions();
+
     @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE)
     List<Auction> getAllAuctions();
+
+    @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE)
+    LiveData<List<Auction>> getAllAuctions2();
 
     @Query("SELECT * FROM " + AppDatabase.AUCTION_TABLE + " WHERE mUserId = :userId")
     Auction getAuctionByUserId(int userId);
@@ -86,8 +92,13 @@ public interface AppDAO {
     @Delete
     void delete(Item...items);
 
+    @Query("DELETE FROM " + AppDatabase.ITEM_TABLE)
+    void deleteAllItems();
+
     @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE)
     List<Item> getAllItems();
+    @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE)
+    LiveData<List<Item>> getAllItems2();
 
     @Query("SELECT * FROM " + AppDatabase.ITEM_TABLE + " WHERE mUserId = :userId")
     Item getItemByUserId(int userId);

@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp">
 
-    <TextView
-        android:id="@+id/textview_id_item"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="16sp" />
+        android:padding="8dp">
 
     <TextView
-        android:id="@+id/textview_name_item"
+        android:id="@+id/textview_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Empty Item"
-        android:textSize="16sp"
-        android:layout_marginStart="8dp"/>
+        android:layout_alignParentEnd="true"
+        android:text="Id"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:id="@+id/textview_password_item"
+        android:id="@+id/textview_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Empty Item"
-        android:textSize="16sp"
-        android:layout_marginStart="8dp"/>
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/textview_id"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:id="@+id/textview_admin_item"
+        android:id="@+id/textview_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Empty Item"
-        android:textSize="16sp"
-        android:layout_marginStart="8dp"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textview_username"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="password" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textview_isadmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textview_id"
+        android:text="admin" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

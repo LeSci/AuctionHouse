@@ -212,15 +212,21 @@ public class MainActivity extends AppCompatActivity {
         // https://stackoverflow.com/questions/9030268/set-visibility-in-menu-programmatically-android
         MenuItem register4 = menu.findItem(R.id.subitem4);
         MenuItem register5 = menu.findItem(R.id.subitem5);
+        MenuItem register6 = menu.findItem(R.id.subitem6);
+        MenuItem register7 = menu.findItem(R.id.subitem7);
         if(mUserId != -1 && mUser.getIsAdmin())
         {
             register4.setVisible(true);
             register5.setVisible(true);
+            register6.setVisible(true);
+            register7.setVisible(true);
         }
         else
         {
             register4.setVisible(false);
-            register5.setVisible(true);
+            register5.setVisible(false);
+            register6.setVisible(false);
+            register6.setVisible(false);
         }
         // sls
         invalidateOptionsMenu();
@@ -266,6 +272,20 @@ public class MainActivity extends AppCompatActivity {
             if (mUser.getIsAdmin()) {
                 Toast.makeText(this, "ExampleFragment", Toast.LENGTH_SHORT).show();
                 Intent intent = ExampleFragmentActivity.intentFactory(getApplicationContext(),mUser.getUserId());
+                startActivity(intent);
+            }
+            return true;
+        } else if (itemId == R.id.subitem6) {
+            if (mUser.getIsAdmin()) {
+                Toast.makeText(this, "Admin2Activity", Toast.LENGTH_SHORT).show();
+                Intent intent = Admin2Activity.intentFactory(getApplicationContext(),mUser.getUserId());
+                startActivity(intent);
+            }
+            return true;
+        } else if (itemId == R.id.subitem7) {
+            if (mUser.getIsAdmin()) {
+                Toast.makeText(this, "Item2Activity", Toast.LENGTH_SHORT).show();
+                Intent intent = Item2Activity.intentFactory(getApplicationContext(),mUser.getUserId());
                 startActivity(intent);
             }
             return true;

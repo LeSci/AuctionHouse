@@ -14,7 +14,10 @@
         android:theme="@style/Theme.AuctionHouse"
         tools:targetApi="31">
         <activity
-            android:name=".MVVMActivity"
+            android:name=".Item2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin2Activity"
             android:exported="false" />
         <activity
             android:name=".ExampleFragmentActivity"
