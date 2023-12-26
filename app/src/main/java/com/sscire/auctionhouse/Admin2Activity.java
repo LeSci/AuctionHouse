@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.viewmodel.UserViewModel;
 
@@ -33,6 +34,7 @@ public class Admin2Activity extends AppCompatActivity {
     private AppDAO mAppDAO;
 
     // MVVM
+    public static final int ADD_USER_REQUEST = 1;
     private UserViewModel mUserViewModel;
 
     // setup reference to RecyclerView
@@ -47,6 +49,15 @@ public class Admin2Activity extends AppCompatActivity {
         wireupDisplay();
 
         // MVVM
+        FloatingActionButton buttonAddUser = findViewById(R.id.buttonAddUser);
+        buttonAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin2Activity.this, AdminAddActivity.class);
+                startActivityForResult(intent, ADD_USER_REQUEST);
+            }
+        });
+
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -78,6 +89,27 @@ public class Admin2Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    // add Item via Floating Action Button
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == ADD_USER_REQUEST && resultCode == RESULT_OK){
+            String username = data.getStringExtra(AdminAddActivity.EXTRA_USERNAME);
+            String password = data.getStringExtra(AdminAddActivity.EXTRA_PASSWORD);
+            boolean isadmin =
+                    (data.getIntExtra(AdminAddActivity.EXTRA_ISADMIN, 0) == 0)
+                            ? false : true;
+            int currency = data.getIntExtra(AdminAddActivity.EXTRA_CURRENCY, 5);
+
+            User user = new User(username, password, isadmin);
+            mUserViewModel.insert(user);
+            Toast.makeText(this, "User saved", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "User not saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static Intent intentFactory(Context context, int userId) {

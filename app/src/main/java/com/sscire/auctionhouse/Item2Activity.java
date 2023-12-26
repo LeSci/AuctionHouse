@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.viewmodel.ItemViewModel;
 
@@ -30,6 +31,7 @@ public class Item2Activity extends AppCompatActivity {
     private AppDAO mAppDAO;
 
     // MVVM
+    public static final int ADD_ITEM_REQUEST = 1;
     private ItemViewModel mItemViewModel;
 
 
@@ -43,6 +45,15 @@ public class Item2Activity extends AppCompatActivity {
         wireupDisplay();
 
         // MVVM
+        FloatingActionButton buttonAddUser = findViewById(R.id.buttonAddItem);
+        buttonAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Item2Activity.this, ItemAddActivity.class);
+                startActivityForResult(intent, ADD_ITEM_REQUEST);
+            }
+        });
+
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -80,6 +91,24 @@ public class Item2Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    // add Item via Floating Action Button
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == ADD_ITEM_REQUEST && resultCode == RESULT_OK){
+            String itemName = data.getStringExtra(ItemAddActivity.EXTRA_ITEMNAME);
+            String itemDescription = data.getStringExtra(ItemAddActivity.EXTRA_DESCRIPTION);
+            int itemPrice = data.getIntExtra(ItemAddActivity.EXTRA_PRICE, 1);
+
+            Item item = new Item(mUserId,itemName, itemPrice);
+            mItemViewModel.insert(item);
+            Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Item not saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static Intent intentFactory(Context context, int userId) {
