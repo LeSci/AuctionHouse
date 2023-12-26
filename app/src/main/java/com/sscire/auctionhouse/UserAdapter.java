@@ -41,6 +41,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         notifyDataSetChanged();
     }
 
+    // swipe functionality
+    public User getUserAt(int position){
+        return users.get(position);
+    }
+
 //    public User getUserAt(int position){
 //        //return notes.get(position);
 //        return getUser(position);

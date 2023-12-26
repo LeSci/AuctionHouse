@@ -1,15 +1,20 @@
 package com.sscire.auctionhouse;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -78,6 +83,36 @@ public class Admin2Activity extends AppCompatActivity {
                 //Toast.makeText(Admin2Activity.this, "onChanged", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Swipe functionality - Part 8
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            // onMove is for Drag-and-Drop, onSwiped is for swiping
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                //viewHolder.getAdapterPosition()
+                User user = adapter.getUserAt(viewHolder.getAdapterPosition());
+                // set/flip user's IsAdmin
+                if(direction == ItemTouchHelper.RIGHT) {
+                    user.setIsAdmin(!user.getIsAdmin());
+                    mUserViewModel.update(user);
+                    Toast.makeText(Admin2Activity.this,
+                            user.getUserName() + " IsAdmin updated to " + user.getIsAdmin(),
+                            Toast.LENGTH_SHORT).show();
+                } else if(direction == ItemTouchHelper.LEFT) {
+                    // add code to delete user
+                    mUserViewModel.update(user); // added so list refreshes
+                    Toast.makeText(Admin2Activity.this,
+                            user.getUserName() + " swiped left", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     private void wireupDisplay() {
@@ -109,6 +144,26 @@ public class Admin2Activity extends AppCompatActivity {
             Toast.makeText(this, "User saved", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "User not saved", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // delete all users
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.delete_user_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.deleteAllUsers) {
+            // mUserViewModel.deleteAllUsers();
+            Toast.makeText(
+                    this, "all user deleted - not!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
