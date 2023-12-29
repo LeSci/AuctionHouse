@@ -91,9 +91,9 @@ public class Item2Activity extends AppCompatActivity {
                 //update RecyclerView
                 adapter.setItems(items);
                 //adapter.submitList(notes);
-                String userid = String.valueOf(mUserId);
-                Toast.makeText(Item2Activity.this, "onChanged", Toast.LENGTH_SHORT).show();
-                Toast.makeText(Item2Activity.this, userid, Toast.LENGTH_SHORT).show();
+//                String userid = String.valueOf(mUserId);
+//                Toast.makeText(Item2Activity.this, "onChanged", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Item2Activity.this, userid, Toast.LENGTH_SHORT).show();
             }
         });
 
