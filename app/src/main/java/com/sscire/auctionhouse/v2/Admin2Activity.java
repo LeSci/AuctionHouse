@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse;
+package com.sscire.auctionhouse.v2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +20,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sscire.auctionhouse.MainActivity;
+import com.sscire.auctionhouse.R;
+import com.sscire.auctionhouse.User;
+import com.sscire.auctionhouse.adapter.UserAdapter;
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.viewmodel.UserViewModel;
 
@@ -85,7 +89,6 @@ public class Admin2Activity extends AppCompatActivity {
         });
 
         // Swipe functionality - Part 8
-
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             // onMove is for Drag-and-Drop, onSwiped is for swiping
@@ -113,7 +116,7 @@ public class Admin2Activity extends AppCompatActivity {
                 }
             }
         }).attachToRecyclerView(recyclerView);
-    }
+    } // end onCreate
 
     private void wireupDisplay() {
         mButtonHome = findViewById(R.id.buttonHome);
@@ -147,6 +150,7 @@ public class Admin2Activity extends AppCompatActivity {
         }
     }
 
+    // part 8
     // delete all users
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -160,7 +164,7 @@ public class Admin2Activity extends AppCompatActivity {
         if (item.getItemId() == R.id.deleteAllUsers) {
             // mUserViewModel.deleteAllUsers();
             Toast.makeText(
-                    this, "all user deleted - not!", Toast.LENGTH_SHORT).show();
+                    this, "all users deleted - not!", Toast.LENGTH_SHORT).show();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

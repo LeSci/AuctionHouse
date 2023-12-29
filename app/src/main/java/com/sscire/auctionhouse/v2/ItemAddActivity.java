@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse;
+package com.sscire.auctionhouse.v2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
+
+import com.sscire.auctionhouse.R;
 
 // https://www.youtube.com/watch?v=RhGMd8SsA14&list=PLrnPJCHvNZuAPyh6nRXsvf5hF48SJWdJb&index=8
 // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 7 - ADD NOTE ACTIVITY - Android

@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse;
+package com.sscire.auctionhouse.v2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.sscire.auctionhouse.R;
+import com.sscire.auctionhouse.User;
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
 

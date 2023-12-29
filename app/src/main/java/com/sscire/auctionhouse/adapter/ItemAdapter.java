@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse;
+package com.sscire.auctionhouse.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.sscire.auctionhouse.Item;
+import com.sscire.auctionhouse.R;
+import com.sscire.auctionhouse.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +44,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
         notifyDataSetChanged();
     }
 
+    // swipe functionality part 8
+    public Item getItemAt(int position){
+        return items.get(position);
+    }
 
 //    public Item getItemAt(int position){
 //        //return notes.get(position);

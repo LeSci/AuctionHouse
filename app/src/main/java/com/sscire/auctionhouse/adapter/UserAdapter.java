@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse;
+package com.sscire.auctionhouse.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.sscire.auctionhouse.R;
+import com.sscire.auctionhouse.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +44,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         notifyDataSetChanged();
     }
 
-    // swipe functionality
+    // swipe functionality part 8
     public User getUserAt(int position){
         return users.get(position);
     }

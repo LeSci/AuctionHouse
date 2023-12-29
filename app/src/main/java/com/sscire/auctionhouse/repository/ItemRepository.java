@@ -96,6 +96,8 @@ public class ItemRepository {
         }
     }
 
+    // AsyncTask deprecated, replaced with ExecutorService
+    // https://techblogs.42gears.com/replacement-of-deprecated-asynctask-in-android/
     private static class DeleteAllItemsAsyncTask extends AsyncTask<Void, Void, Void> {
         private AppDAO appDAO;
 

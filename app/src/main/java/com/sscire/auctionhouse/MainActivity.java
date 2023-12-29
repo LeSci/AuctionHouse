@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
+import com.sscire.auctionhouse.v2.Admin2Activity;
+import com.sscire.auctionhouse.v2.Item2Activity;
 
 //import com.sscire.auctionhouse.R.id;
 

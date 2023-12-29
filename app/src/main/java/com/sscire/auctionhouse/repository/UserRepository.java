@@ -9,6 +9,7 @@ import com.sscire.auctionhouse.User;
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 4 - VIEWMODEL - Android Studio Tutorial
@@ -43,6 +44,7 @@ public class UserRepository {
         return allUsers;
     }
 
+    //private static class InsertUserAsyncTask extends AsyncTaskExecutorService<User, Void, Void> {
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
         private AppDAO appDAO;
 
@@ -55,6 +57,12 @@ public class UserRepository {
             appDAO.insert(users[0]);
             return null;
         }
+
+//        @Override
+//        protected Void doInBackground(User users) {
+//            appDAO.insert(users[0]);
+//            return null;
+//        }
     }
 
     private static class UpdateUserAsyncTask extends AsyncTask<User, Void, Void> {
