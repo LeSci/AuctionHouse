@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sscire.auctionhouse.Item;
@@ -16,11 +18,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 6 - RECYCLERVIEW + ADAPTER - Android Tutorial
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
-    private List<Item> items = new ArrayList<>();
+// public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
+
+// Room + ViewModel + LiveData + RecyclerView (MVVM) Part 10 - ADD ANIMATIONS WITH LISTADAPTER/DIFFUTIL
+public class ItemAdapter extends ListAdapter<Item,ItemAdapter.ItemHolder> {
+    //private List<Item> items = new ArrayList<>(); // removed for part 10
 
     //part 9
     OnItemClickListener mListener;
+
+    // part 10
+    public ItemAdapter() {
+        super(DIFF_CALLBACK);
+    }
+
+    private static final DiffUtil.ItemCallback<Item> DIFF_CALLBACK = new DiffUtil.ItemCallback<Item>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
+            return oldItem.getItemId() == newItem.getItemId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {
+            return oldItem.getUserId() == newItem.getUserId()
+                    && oldItem.getItemName().equals(newItem.getItemName())
+                   // && oldItem.getDescription() == newItem.Description()
+                    && oldItem.getItemPrice() == newItem.getItemPrice();
+        }
+    };
+
     @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,26 +57,29 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
-        Item currentItem = items.get(position);
-//        Item currentItem = getItem(position);
+        //Item currentItem = items.get(position); // part 10 as we pass the list directly to superclass
+        Item currentItem = getItem(position);
         holder.mTextViewId.setText(String.valueOf(currentItem.getItemId()));
         holder.mTextViewName.setText(currentItem.getItemName());
         holder.mTextViewPrice.setText(String.valueOf(currentItem.getItemPrice()));
     }
 
-    @Override
-    public int getItemCount() {
-        return items.size();
-    }
+    // not needed after part 10
+//    @Override
+//    public int getItemCount() {
+//        return items.size();
+//    }
 
-    public void setItems(List<Item> items){
-        this.items = items;
-        notifyDataSetChanged();
-    }
+    // not needed after part 10
+//    public void setItems(List<Item> items){
+//        this.items = items;
+//        notifyDataSetChanged();
+//    }
 
     // swipe functionality part 8
     public Item getItemAt(int position){
-        return items.get(position);
+        //return items.get(position);
+        return getItem(position);
     }
 
 //    public Item getItemAt(int position){
@@ -74,7 +103,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if(mListener != null && position != RecyclerView.NO_POSITION){
-                        mListener.onItemClick(items.get(position));
+                        // part 10
+                       // mListener.onItemClick(items.get(position));
+                        mListener.onItemClick(getItem(position));
                     }
                 }
             });

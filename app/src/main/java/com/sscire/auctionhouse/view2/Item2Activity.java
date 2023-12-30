@@ -89,8 +89,9 @@ public class Item2Activity extends AppCompatActivity {
             public void onChanged(@Nullable List<Item> items) {
                 //mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
                 //update RecyclerView
-                adapter.setItems(items);
-                //adapter.submitList(notes);
+                // part 10
+                //adapter.setItems(items);
+                adapter.submitList(items);
 //                String userid = String.valueOf(mUserId);
 //                Toast.makeText(Item2Activity.this, "onChanged", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(Item2Activity.this, userid, Toast.LENGTH_SHORT).show();
@@ -137,12 +138,14 @@ public class Item2Activity extends AppCompatActivity {
                                         itemName + " belongs to someone else."
                                 , Toast.LENGTH_SHORT).show();
                     }
-                    mItemViewModel.update(item); // added so list refreshes
+                    mItemViewModel.update(item); // added so list refreshes, broken after part10
+                    // see
+                    // https://developer.android.com/develop/ui/views/touch-and-input/swipe/add-swipe-interface
                 } else if(direction == ItemTouchHelper.LEFT) {
                     // add code to delete item
                     Toast.makeText(Item2Activity.this,
                             item.getItemName()+ " swiped left", Toast.LENGTH_SHORT).show();
-                    mItemViewModel.update(item); // added so list refreshes
+                    mItemViewModel.update(item); // added so list refreshes, broken after part10
                 }
             }
         }).attachToRecyclerView(recyclerView);
