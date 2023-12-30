@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse.v2;
+package com.sscire.auctionhouse.view2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +21,7 @@ import com.sscire.auctionhouse.db.AppDatabase;
 // https://www.youtube.com/watch?v=RhGMd8SsA14&list=PLrnPJCHvNZuAPyh6nRXsvf5hF48SJWdJb&index=8
 // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 7 - ADD NOTE ACTIVITY - Android
 
-public class AdminAddActivity extends AppCompatActivity {
+public class UserAddActivity extends AppCompatActivity {
 
     private User mUser;
     private int mUserId = -1;
@@ -40,7 +40,7 @@ public class AdminAddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_add);
+        setContentView(R.layout.activity_user_add);
 
         getDatabase();
 

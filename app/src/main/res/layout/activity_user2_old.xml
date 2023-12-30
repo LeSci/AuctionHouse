@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".v2.Admin2Activity">
+    tools:context=".view2.User2Activity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

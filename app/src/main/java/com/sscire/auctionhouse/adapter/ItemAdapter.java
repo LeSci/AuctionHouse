@@ -15,8 +15,12 @@ import com.sscire.auctionhouse.User;
 import java.util.ArrayList;
 import java.util.List;
 
+// Room + ViewModel + LiveData + RecyclerView (MVVM) Part 6 - RECYCLERVIEW + ADAPTER - Android Tutorial
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
     private List<Item> items = new ArrayList<>();
+
+    //part 9
+    OnItemClickListener mListener;
     @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -63,6 +67,27 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
             mTextViewId = itemView.findViewById(R.id.textview_id);
             mTextViewName = itemView.findViewById(R.id.textview_name);
             mTextViewPrice = itemView.findViewById(R.id.textview_price);
+
+            //part 9
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(mListener != null && position != RecyclerView.NO_POSITION){
+                        mListener.onItemClick(items.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    // Part 9
+    // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 9 - EDIT NOTES ON ITEM CLICK - Android
+    public interface OnItemClickListener {
+        void onItemClick(Item item);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.mListener = listener;
     }
 }

@@ -14,19 +14,19 @@
         android:theme="@style/Theme.AuctionHouse"
         tools:targetApi="31">
         <activity
-            android:name=".v2.ItemAddActivity"
+            android:name=".view2.ItemEditAddActivity"
             android:exported="false"
-            android:parentActivityName=".v2.Item2Activity"/>
+            android:parentActivityName=".view2.Item2Activity"/>
         <activity
-            android:name=".v2.AdminAddActivity"
+            android:name=".view2.UserAddActivity"
             android:exported="false"
-            android:parentActivityName=".v2.Admin2Activity" />
+            android:parentActivityName=".view2.User2Activity" />
         <activity
-            android:name=".v2.Item2Activity"
+            android:name=".view2.Item2Activity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".v2.Admin2Activity"
+            android:name=".view2.User2Activity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity

@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse.v2;
+package com.sscire.auctionhouse.view2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sscire.auctionhouse.Auction;
-import com.sscire.auctionhouse.AuctionActivity;
 import com.sscire.auctionhouse.Item;
 import com.sscire.auctionhouse.MainActivity;
 import com.sscire.auctionhouse.R;
@@ -46,6 +45,7 @@ public class Item2Activity extends AppCompatActivity {
 
     // MVVM
     public static final int ADD_ITEM_REQUEST = 1;
+    public static final int EDIT_ITEM_REQUEST = 2;  // part 9
     private ItemViewModel mItemViewModel;
 
     // setup reference to RecyclerView
@@ -65,7 +65,7 @@ public class Item2Activity extends AppCompatActivity {
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Item2Activity.this, ItemAddActivity.class);
+                Intent intent = new Intent(Item2Activity.this, ItemEditAddActivity.class);
                 startActivityForResult(intent, ADD_ITEM_REQUEST);
             }
         });
@@ -147,6 +147,26 @@ public class Item2Activity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
+        // part 9
+        adapter.setOnItemClickListener(new ItemAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Item item) {
+                Intent intent =
+                        new Intent(Item2Activity.this, ItemEditAddActivity.class);
+                intent.putExtra(ItemEditAddActivity.EXTRA_ITEMID, item.getItemId());
+                intent.putExtra(ItemEditAddActivity.EXTRA_USERID, item.getUserId());
+                intent.putExtra(ItemEditAddActivity.EXTRA_ITEMNAME, item.getItemName());
+                intent.putExtra(ItemEditAddActivity.EXTRA_PRICE, item.getItemPrice());
+//                Toast.makeText(Item2Activity.this,
+//                          item.getItemId() + " "
+//                        + item.getUserId() + " "
+//                        + item.getItemName() + " "
+//                        + item.getItemPrice() + " " , Toast.LENGTH_SHORT).show();
+                //intent.putExtra(ItemEditAddActivity.EXTRA_DESCRIPTION, item.getItemDescription());
+                startActivityForResult(intent, EDIT_ITEM_REQUEST);
+            }
+        });
+
     } // end onCreate
 
 
@@ -168,13 +188,30 @@ public class Item2Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == ADD_ITEM_REQUEST && resultCode == RESULT_OK){
-            String itemName = data.getStringExtra(ItemAddActivity.EXTRA_ITEMNAME);
-            String itemDescription = data.getStringExtra(ItemAddActivity.EXTRA_DESCRIPTION);
-            int itemPrice = data.getIntExtra(ItemAddActivity.EXTRA_PRICE, 1);
+            String itemName = data.getStringExtra(ItemEditAddActivity.EXTRA_ITEMNAME);
+            String itemDescription = data.getStringExtra(ItemEditAddActivity.EXTRA_DESCRIPTION);
+            int itemPrice = data.getIntExtra(ItemEditAddActivity.EXTRA_PRICE, 1);
 
             Item item = new Item(mUserId,itemName, itemPrice);
             mItemViewModel.insert(item);
             Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT).show();
+        } else if(requestCode == EDIT_ITEM_REQUEST && resultCode == RESULT_OK) { // part 9
+            int itemId = data.getIntExtra(ItemEditAddActivity.EXTRA_ITEMID, -1);
+            int userId = data.getIntExtra(ItemEditAddActivity.EXTRA_USERID, -1);
+
+            if (itemId == -1 || userId == -1){
+                Toast.makeText(this, "Item can't be updated", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String itemName = data.getStringExtra(ItemEditAddActivity.EXTRA_ITEMNAME);
+            //String itemDescription = data.getStringExtra(ItemEditAddActivity.EXTRA_DESCRIPTION);
+            int itemPrice = data.getIntExtra(ItemEditAddActivity.EXTRA_PRICE, 1);
+
+            Item item = new Item(userId, itemName, itemPrice);
+            item.setItemId(itemId);
+            mItemViewModel.update(item);
+            Toast.makeText(this, "Item updated", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Item not saved", Toast.LENGTH_SHORT).show();
         }

@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse.v2;
+package com.sscire.auctionhouse.view2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.sscire.auctionhouse.R;
@@ -17,7 +16,10 @@ import com.sscire.auctionhouse.R;
 // https://www.youtube.com/watch?v=RhGMd8SsA14&list=PLrnPJCHvNZuAPyh6nRXsvf5hF48SJWdJb&index=8
 // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 7 - ADD NOTE ACTIVITY - Android
 
-public class ItemAddActivity extends AppCompatActivity {
+public class ItemEditAddActivity extends AppCompatActivity {
+    public static final String EXTRA_ITEMID = "com.sscire.auctionhouse.itemIdKey"; // part 9
+
+    public static final String EXTRA_USERID= "com.sscire.auctionhouse.userIdKey"; // part 9
     public static final String EXTRA_ITEMNAME = "com.sscire.auctionhouse.itemnameKey";
     public static final String EXTRA_DESCRIPTION = "com.sscire.auctionhouse.descriptionKey";
     public static final String EXTRA_PRICE= "com.sscire.auctionhouse.priceKey";
@@ -34,7 +36,17 @@ public class ItemAddActivity extends AppCompatActivity {
         mEditTextItemPrice = findViewById(R.id.editTextItemPrice);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Item");
+
+        // part 9
+        Intent intent = getIntent();
+        if(intent.hasExtra(EXTRA_ITEMID) && intent.hasExtra(EXTRA_USERID)){
+            setTitle("Edit Item");
+            mEditTextItemName.setText(intent.getStringExtra(EXTRA_ITEMNAME));
+            //mEditTextItemDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+            mEditTextItemPrice.setText(Integer.toString(intent.getIntExtra(EXTRA_PRICE, 1)));
+        } else {
+            setTitle("Add Item");
+        }
     }
 
     private void saveItem(){
@@ -48,10 +60,21 @@ public class ItemAddActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             return;
         }
+
+
         Intent data = new Intent();
         data.putExtra(EXTRA_ITEMNAME, itemName);
         data.putExtra(EXTRA_DESCRIPTION, itemDescription);
         data.putExtra(EXTRA_PRICE, itemPrice);
+
+        // part 9
+        int itemId = getIntent().getIntExtra(EXTRA_ITEMID, -1);
+        int userId = getIntent().getIntExtra(EXTRA_USERID, -1);
+
+        if(itemId != -1 && userId != -1){
+            data.putExtra(EXTRA_ITEMID, itemId);
+            data.putExtra(EXTRA_USERID, userId);
+        }
 
         setResult(RESULT_OK, data);
         finish();

@@ -8,14 +8,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sscire.auctionhouse.Item;
 import com.sscire.auctionhouse.R;
 import com.sscire.auctionhouse.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// Room + ViewModel + LiveData + RecyclerView (MVVM) Part 6 - RECYCLERVIEW + ADAPTER - Android Tutorial
+
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     private List<User> users = new ArrayList<>();
+
+    ItemAdapter.OnItemClickListener mListener; // part 9
+
     @NonNull
     @Override
     public UserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -66,5 +72,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
             mTextViewPassword = itemView.findViewById(R.id.textview_password);
             mTextViewIsAdmin = itemView.findViewById(R.id.textview_isadmin);
         }
+    }
+
+    // Part 9
+    // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 9 - EDIT NOTES ON ITEM CLICK - Android
+    public interface OnItemClickListener {
+        void onItemClick(Item item);
+    }
+
+    public void setOnItemClickListener(ItemAdapter.OnItemClickListener listener){
+        this.mListener = listener;
     }
 }

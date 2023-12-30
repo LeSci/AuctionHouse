@@ -13,6 +13,8 @@ import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+
 
 public class ItemRepository {
     private AppDAO appDAO;
@@ -96,8 +98,6 @@ public class ItemRepository {
         }
     }
 
-    // AsyncTask deprecated, replaced with ExecutorService
-    // https://techblogs.42gears.com/replacement-of-deprecated-asynctask-in-android/
     private static class DeleteAllItemsAsyncTask extends AsyncTask<Void, Void, Void> {
         private AppDAO appDAO;
 
@@ -109,6 +109,33 @@ public class ItemRepository {
         protected Void doInBackground(Void... voids) {
             appDAO.deleteAllItems();
             return null;
+        }
+    }
+
+    // AsyncTask deprecated, replaced with ExecutorService
+    // https://techblogs.42gears.com/replacement-of-deprecated-asynctask-in-android/
+    private static class UpdateItemAsyncTask2 extends AsyncTaskExecutorService<Item, Void, Void> {
+        private AppDAO appDAO;
+
+        private void UpdateItemAsyncTask(AppDAO appDAO) {
+            this.appDAO = appDAO;
+        }
+
+//        @Override
+//        protected Void doInBackground(Item... item) {
+//            appDAO.update(item[0]);
+//            return null;
+//        }
+
+        @Override
+        protected Void doInBackground(Item item) {
+            appDAO.update(item);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+
         }
     }
 }

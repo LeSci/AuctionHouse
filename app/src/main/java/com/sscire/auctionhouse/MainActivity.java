@@ -18,8 +18,8 @@ import android.widget.Toast;
 
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.db.AppDatabase;
-import com.sscire.auctionhouse.v2.Admin2Activity;
-import com.sscire.auctionhouse.v2.Item2Activity;
+import com.sscire.auctionhouse.view2.User2Activity;
+import com.sscire.auctionhouse.view2.Item2Activity;
 
 //import com.sscire.auctionhouse.R.id;
 
@@ -283,8 +283,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if (itemId == R.id.subitem6) {
             if (mUser.getIsAdmin()) {
-                Toast.makeText(this, "Admin2Activity", Toast.LENGTH_SHORT).show();
-                Intent intent = Admin2Activity.intentFactory(getApplicationContext(),mUser.getUserId());
+                Toast.makeText(this, "User2Activity", Toast.LENGTH_SHORT).show();
+                Intent intent = User2Activity.intentFactory(getApplicationContext(),mUser.getUserId());
                 startActivity(intent);
             }
             return true;

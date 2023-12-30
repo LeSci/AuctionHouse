@@ -1,4 +1,4 @@
-package com.sscire.auctionhouse.v2;
+package com.sscire.auctionhouse.view2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,7 +31,7 @@ import java.util.List;
 
 // https://www.youtube.com/watch?v=Jwdty9jQN0E&list=PLrnPJCHvNZuAPyh6nRXsvf5hF48SJWdJb&index=3
 // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 2 - ENTITY - Android Studio Tutorial
-public class Admin2Activity extends AppCompatActivity {
+public class User2Activity extends AppCompatActivity {
 
     // sls - return home
     private static final String USER_ID_KEY = "com.sscire.auctionhouse.userIdKey";
@@ -51,7 +51,7 @@ public class Admin2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin2);
+        setContentView(R.layout.activity_user2);
 
         // sls - return home
         mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
@@ -62,7 +62,7 @@ public class Admin2Activity extends AppCompatActivity {
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Admin2Activity.this, AdminAddActivity.class);
+                Intent intent = new Intent(User2Activity.this, UserAddActivity.class);
                 startActivityForResult(intent, ADD_USER_REQUEST);
             }
         });
@@ -105,13 +105,13 @@ public class Admin2Activity extends AppCompatActivity {
                 if(direction == ItemTouchHelper.RIGHT) {
                     user.setIsAdmin(!user.getIsAdmin());
                     mUserViewModel.update(user);
-                    Toast.makeText(Admin2Activity.this,
+                    Toast.makeText(User2Activity.this,
                             user.getUserName() + " IsAdmin updated to " + user.getIsAdmin(),
                             Toast.LENGTH_SHORT).show();
                 } else if(direction == ItemTouchHelper.LEFT) {
                     // add code to delete user
                     mUserViewModel.update(user); // added so list refreshes
-                    Toast.makeText(Admin2Activity.this,
+                    Toast.makeText(User2Activity.this,
                             user.getUserName() + " swiped left", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -135,12 +135,12 @@ public class Admin2Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == ADD_USER_REQUEST && resultCode == RESULT_OK){
-            String username = data.getStringExtra(AdminAddActivity.EXTRA_USERNAME);
-            String password = data.getStringExtra(AdminAddActivity.EXTRA_PASSWORD);
+            String username = data.getStringExtra(UserAddActivity.EXTRA_USERNAME);
+            String password = data.getStringExtra(UserAddActivity.EXTRA_PASSWORD);
             boolean isadmin =
-                    (data.getIntExtra(AdminAddActivity.EXTRA_ISADMIN, 0) == 0)
+                    (data.getIntExtra(UserAddActivity.EXTRA_ISADMIN, 0) == 0)
                             ? false : true;
-            int currency = data.getIntExtra(AdminAddActivity.EXTRA_CURRENCY, 5);
+            int currency = data.getIntExtra(UserAddActivity.EXTRA_CURRENCY, 5);
 
             User user = new User(username, password, isadmin);
             mUserViewModel.insert(user);
@@ -172,7 +172,7 @@ public class Admin2Activity extends AppCompatActivity {
     }
 
     public static Intent intentFactory(Context context, int userId) {
-        Intent intent = new Intent(context, Admin2Activity.class);
+        Intent intent = new Intent(context, User2Activity.class);
         intent.putExtra(USER_ID_KEY, userId);
         return intent;
     }
