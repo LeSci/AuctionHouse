@@ -20,7 +20,7 @@ import java.util.List;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     private List<User> users = new ArrayList<>();
 
-    ItemAdapter.OnItemClickListener mListener; // part 9
+    UserAdapter.OnUserClickListener mListener; // part 9
 
     @NonNull
     @Override
@@ -65,22 +65,33 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         private TextView mTextViewUsername;
         private TextView mTextViewPassword;
         private TextView mTextViewIsAdmin;
-        public UserHolder(@NonNull View itemView) {
-            super(itemView);
-            mTextViewId = itemView.findViewById(R.id.textview_id);
-            mTextViewUsername = itemView.findViewById(R.id.textview_username);
-            mTextViewPassword = itemView.findViewById(R.id.textview_password);
-            mTextViewIsAdmin = itemView.findViewById(R.id.textview_isadmin);
+        public UserHolder(@NonNull View userView) {
+            super(userView);
+            mTextViewId = userView.findViewById(R.id.textview_id);
+            mTextViewUsername = userView.findViewById(R.id.textview_username);
+            mTextViewPassword = userView.findViewById(R.id.textview_password);
+            mTextViewIsAdmin = userView.findViewById(R.id.textview_isadmin);
+
+            //part 9
+            userView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(mListener != null && position != RecyclerView.NO_POSITION){
+                        mListener.onUserClick(users.get(position));
+                    }
+                }
+            });
         }
     }
 
     // Part 9
     // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 9 - EDIT NOTES ON ITEM CLICK - Android
-    public interface OnItemClickListener {
-        void onItemClick(Item item);
+    public interface OnUserClickListener {
+        void onUserClick(User user);
     }
 
-    public void setOnItemClickListener(ItemAdapter.OnItemClickListener listener){
+    public void setOnUserClickListener(UserAdapter.OnUserClickListener listener){
         this.mListener = listener;
     }
 }

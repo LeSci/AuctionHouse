@@ -21,12 +21,12 @@ import com.sscire.auctionhouse.db.AppDatabase;
 // https://www.youtube.com/watch?v=RhGMd8SsA14&list=PLrnPJCHvNZuAPyh6nRXsvf5hF48SJWdJb&index=8
 // Room + ViewModel + LiveData + RecyclerView (MVVM) Part 7 - ADD NOTE ACTIVITY - Android
 
-public class UserAddActivity extends AppCompatActivity {
+public class UserEditAddActivity extends AppCompatActivity {
 
     private User mUser;
     private int mUserId = -1;
     private AppDAO mAppDAO;
-
+    public static final String EXTRA_USERID= "com.sscire.auctionhouse.userIdKey"; // part 9
     public static final String EXTRA_USERNAME = "com.sscire.auctionhouse.usernameKey";
     public static final String EXTRA_PASSWORD = "com.sscire.auctionhouse.passwordKey";
     public static final String EXTRA_ISADMIN = "com.sscire.auctionhouse.isadminKey";
@@ -55,7 +55,18 @@ public class UserAddActivity extends AppCompatActivity {
         mNumberPickerCurrency.setMaxValue(10);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add User");
+
+        // part 9
+        Intent intent = getIntent();
+        if(intent.hasExtra(EXTRA_USERID)){
+            setTitle("Edit Item");
+            mEditTextUsername.setText(intent.getStringExtra(EXTRA_USERNAME));
+            mEditTextPassword.setText(intent.getStringExtra(EXTRA_PASSWORD));
+            mNumberPickerIsAdmin.setValue(Integer.valueOf(intent.getIntExtra(EXTRA_ISADMIN, 0)));
+            mNumberPickerCurrency.setValue(Integer.valueOf(intent.getIntExtra(EXTRA_CURRENCY, 1)));
+        } else {
+            setTitle("Add Item");
+        }
     }
 
     private void saveUser(){
@@ -64,22 +75,30 @@ public class UserAddActivity extends AppCompatActivity {
         int isadmin = mNumberPickerIsAdmin.getValue();
         int currency = mNumberPickerCurrency.getValue();
 
-        if(username.trim().length()<5 || password.trim().length() < 5){
-            Toast.makeText(this,
-                    "Username/Password must be greater than 5 characters",
-                    Toast.LENGTH_SHORT).show();
-            return;
-        } else if(checkForUserInDatabase(username)){
-            Toast.makeText(this,
-                    "Username already exists",
-                    Toast.LENGTH_SHORT).show();
-            return;
-        }
         Intent data = new Intent();
         data.putExtra(EXTRA_USERNAME, username);
         data.putExtra(EXTRA_PASSWORD, password);
         data.putExtra(EXTRA_ISADMIN, isadmin);
         data.putExtra(EXTRA_CURRENCY, currency);
+
+        // part 9
+        int userId = getIntent().getIntExtra(EXTRA_USERID, -1);
+
+        if(userId != -1){
+            data.putExtra(EXTRA_USERID, userId);
+        }
+
+        if(username.trim().length()<5 || password.trim().length() < 5){
+            Toast.makeText(this,
+                    "Username/Password must be greater than 5 characters",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        } else if(checkForUserInDatabase(username) && userId == -1){
+            Toast.makeText(this,
+                    "Username already exists",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         setResult(RESULT_OK, data);
         finish();

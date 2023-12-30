@@ -183,6 +183,7 @@ public class Item2Activity extends AppCompatActivity {
     }
 
     // add Item via Floating Action Button
+    // also part 9
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -195,7 +196,8 @@ public class Item2Activity extends AppCompatActivity {
             Item item = new Item(mUserId,itemName, itemPrice);
             mItemViewModel.insert(item);
             Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT).show();
-        } else if(requestCode == EDIT_ITEM_REQUEST && resultCode == RESULT_OK) { // part 9
+            // part 9
+        } else if(requestCode == EDIT_ITEM_REQUEST && resultCode == RESULT_OK) {
             int itemId = data.getIntExtra(ItemEditAddActivity.EXTRA_ITEMID, -1);
             int userId = data.getIntExtra(ItemEditAddActivity.EXTRA_USERID, -1);
 

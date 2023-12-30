@@ -18,7 +18,7 @@
             android:exported="false"
             android:parentActivityName=".view2.Item2Activity"/>
         <activity
-            android:name=".view2.UserAddActivity"
+            android:name=".view2.UserEditAddActivity"
             android:exported="false"
             android:parentActivityName=".view2.User2Activity" />
         <activity

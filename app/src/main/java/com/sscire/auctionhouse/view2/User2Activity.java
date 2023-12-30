@@ -20,9 +20,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sscire.auctionhouse.Item;
 import com.sscire.auctionhouse.MainActivity;
 import com.sscire.auctionhouse.R;
 import com.sscire.auctionhouse.User;
+import com.sscire.auctionhouse.adapter.ItemAdapter;
 import com.sscire.auctionhouse.adapter.UserAdapter;
 import com.sscire.auctionhouse.db.AppDAO;
 import com.sscire.auctionhouse.viewmodel.UserViewModel;
@@ -44,6 +46,8 @@ public class User2Activity extends AppCompatActivity {
 
     // MVVM
     public static final int ADD_USER_REQUEST = 1;
+
+    public static final int EDIT_USER_REQUEST = 2;  // part 9
     private UserViewModel mUserViewModel;
 
     // setup reference to RecyclerView
@@ -62,7 +66,7 @@ public class User2Activity extends AppCompatActivity {
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(User2Activity.this, UserAddActivity.class);
+                Intent intent = new Intent(User2Activity.this, UserEditAddActivity.class);
                 startActivityForResult(intent, ADD_USER_REQUEST);
             }
         });
@@ -116,6 +120,21 @@ public class User2Activity extends AppCompatActivity {
                 }
             }
         }).attachToRecyclerView(recyclerView);
+
+        // part 9
+        adapter.setOnUserClickListener(new UserAdapter.OnUserClickListener() {
+            @Override
+            public void onUserClick(User user) {
+                Intent intent =
+                        new Intent(User2Activity.this, UserEditAddActivity.class);
+                intent.putExtra(UserEditAddActivity.EXTRA_USERID, user.getUserId());
+                intent.putExtra(UserEditAddActivity.EXTRA_USERNAME, user.getUserName());
+                intent.putExtra(UserEditAddActivity.EXTRA_PASSWORD, user.getPassword());
+                intent.putExtra(UserEditAddActivity.EXTRA_ISADMIN, user.getIsAdmin());
+                //intent.putExtra(UserEditAddActivity.EXTRA_CURRENCY, user.getCurrency());
+                startActivityForResult(intent, EDIT_USER_REQUEST);
+            }
+        });
     } // end onCreate
 
     private void wireupDisplay() {
@@ -135,17 +154,35 @@ public class User2Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == ADD_USER_REQUEST && resultCode == RESULT_OK){
-            String username = data.getStringExtra(UserAddActivity.EXTRA_USERNAME);
-            String password = data.getStringExtra(UserAddActivity.EXTRA_PASSWORD);
+            String username = data.getStringExtra(UserEditAddActivity.EXTRA_USERNAME);
+            String password = data.getStringExtra(UserEditAddActivity.EXTRA_PASSWORD);
             boolean isadmin =
-                    (data.getIntExtra(UserAddActivity.EXTRA_ISADMIN, 0) == 0)
+                    (data.getIntExtra(UserEditAddActivity.EXTRA_ISADMIN, 0) == 0)
                             ? false : true;
-            int currency = data.getIntExtra(UserAddActivity.EXTRA_CURRENCY, 5);
+            int currency = data.getIntExtra(UserEditAddActivity.EXTRA_CURRENCY, 5);
 
             User user = new User(username, password, isadmin);
             mUserViewModel.insert(user);
             Toast.makeText(this, "User saved", Toast.LENGTH_SHORT).show();
-        } else {
+            // part 9
+        }  else if(requestCode == EDIT_USER_REQUEST && resultCode == RESULT_OK) {
+            int userId = data.getIntExtra(UserEditAddActivity.EXTRA_USERID, -1);
+
+            if (userId < 3){
+                Toast.makeText(this, "User can't be updated", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String username = data.getStringExtra(UserEditAddActivity.EXTRA_USERNAME);
+            String password = data.getStringExtra(UserEditAddActivity.EXTRA_PASSWORD);
+            boolean isAdmin =
+                    (data.getIntExtra(UserEditAddActivity.EXTRA_ISADMIN, 0)
+                    == 0 ? false : true);
+            //int currency = data.getIntExtra(UserEditAddActivity.EXTRA_CURRENCY, 1);
+            User user = new User(username, password, isAdmin);
+            user.setUserId(userId);
+            mUserViewModel.update(user);
+            Toast.makeText(this, "Item updated", Toast.LENGTH_SHORT).show();
+        }else {
             Toast.makeText(this, "User not saved", Toast.LENGTH_SHORT).show();
         }
     }
